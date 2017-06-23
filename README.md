@@ -40,3 +40,8 @@ ESC退出到命令模式时, 会自动禁用输入法. 但在查找模式中, �
 
 
 ## Vimperator的配置---`vimperatorrc`说明
+### 如何改变难看的配色?
+Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorscheme*为例)
+1. 将colorscheme配置文件`indigo.vimp`放置于`~/.vimperator/colors/`文件夹内
+2. 在`~/.vimperatorrc`文件中加入`colorscheme indigo`
+在[vimperator-colors](https://github.com/vimpr/vimperator-colors)仓库中可以很多colorscheme.
