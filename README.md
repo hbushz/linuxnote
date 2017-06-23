@@ -30,7 +30,7 @@ ESC退出到命令模式时, 会自动禁用输入法. 但在查找模式中, �
 		IdentityFile ~/.ssh/github
 
 		Host coding.net www.coding.net
-		IdentityFile ~/.ssh/coding
+		IdentityFile ~/.ssh/id_rsa
 
 	**注意**两条记录间用空行分隔
 	
