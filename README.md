@@ -1,7 +1,7 @@
 # Linux Note
 这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
 
-## MacVim的配置---*macvimrc*说明
+## MacVim的配置---`macvimrc`说明
 ### 如何在退出插入模式后屏蔽中文输入法?
 在Normal模式下中文输入法简直是噩梦, 最简单有效的屏蔽方式为
 1. 在`vimrc`文件中加入
@@ -38,3 +38,5 @@ ESC退出到命令模式时, 会自动禁用输入法. 但在查找模式中, �
 
 
 
+
+## Vimperator的配置---`vimperatorrc`说明
