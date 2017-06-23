@@ -1,0 +1,34 @@
+"3.16.0 (created: 2017/02/01 00:55:15)
+
+"控制外观
+set titlestring=Firefox
+set gui=noaddons,nobookmarks,nomenu,nonavigation,notabs
+set noscrollbars
+colorscheme indigo
+
+"控制字体
+highlight Hint::after content: attr(number); font-size:13pt
+highlight Normal color: black; background: white; font-size:10pt
+
+set focuscontent
+
+"以字母作为提示字符"
+set hintchars=jksdlaghioweqprumnctyvbxz
+
+"重定定义下一页与下一页"
+set "nextpattern=s*下一页|下一张|下一篇|下页|后页s*,^bnextb,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b"
+set "prevpattern=\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$,s*上一页|上一张|上页s*,bprev|previousb"
+"一次上下移动4行"
+noremap j 4j
+noremap k 4k
+"将h,l重新映射为左右标签页"
+noremap h gT
+noremap l gt
+
+"进入hint 模式后自动禁用fcitx输入法
+nnoremap <silent> f :silent !fcitx-remote -c<CR>f
+nnoremap <silent> F :silent !fcitx-remote -c<CR>F
+nnoremap <silent> : :silent !fcitx-remote -c<CR>:
+
+source! /home/shuomo/.vimperatorrc.local
+" vim: set ft=vimperator:
