@@ -1,0 +1,282 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo (General enhancement)
+
+Plugin 'tpope/vim-abolish.git'			"模糊匹配
+Plugin 'tpope/vim-characterize.git'		"解析当前字符的编码ga
+Plugin 'tpope/vim-commentary.git'		"利用\\{motion}来切换指定行的注释状态
+Plugin 'tpope/vim-dispatch.git'
+Plugin 'tpope/vim-eunuch.git'			"Vim sugar for the UNIX shell commands that need it the most. 
+						"For example  :SudoWrite Write a privileged file with sudo.
+Plugin 'tpope/vim-fugitive.git'			"调用Git
+Plugin 'tpope/vim-ragtag.git'
+Plugin 'tpope/vim-repeat.git'			"Remaps . in a way that plugins can tap into it.
+" Plugin 'tpope/vim-scriptease.git'
+" Plugin 'tpope/vim-sensible.git'		"Make a universal set of defaults(注意这个设置与我的自己的设置有点重复，需要修改但值得借鉴）
+Plugin 'tpope/vim-sleuth.git'			"This plugin automatically adjusts 'shiftwidth' and 'expandtab'
+Plugin 'tpope/vim-speeddating'			"快速输入日期时间
+Plugin 'tpope/vim-surround.git'			"Delete change and add surroundings in pairs
+" Plugin 'tpope/vim-tbone.git'
+Plugin 'tpope/vim-unimpaired.git'		"以[]括号为核心的快键
+" Plugin 'tpope/vim-projectile.git'
+
+" Custom textobjects
+" Plugin 'kana/vim-textobj-user.git'
+" Plugin 'kana/vim-textobj-entire.git'
+" Plugin 'kana/vim-textobj-indent.git'
+" Plugin 'kana/vim-textobj-syntax.git'
+" Plugin 'kana/vim-textobj-line.git'
+
+" Markdown vim mode
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+" Plugin 'suan/vim-instant-markdown'
+Plugin 'iamcco/markdown-preview.vim'
+
+" A modern vim plugin for editing LaTeX files
+Plugin 'lervag/vimtex.git'
+
+" Colorscheme
+" Plugin 'altercation/vim-colors-solarized'
+Plugin 'fugalh/desert.vim'
+" Plugin 'tomasr/molokai'
+" Plugin 'jonathanfilip/vim-lucius'
+
+" lean & mean status/tabline for vim that's light as air
+Plugin 'bling/vim-airline'
+
+" A tree explorer plugin for vim.
+Plugin 'scrooloose/nerdtree' 
+
+" Keep and restore fcitx state when leaving/re-entering insert mode
+Plugin 'vim-scripts/fcitx.vim' 
+
+" Auto-completion for delimitate
+Plugin 'Raimondi/delimitMate' 
+
+" A code-completion engine for vim
+Plugin 'Valloric/YouCompleteMe.git'
+
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" " git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"
+"
+"
+"-----------------------
+" Set GUI font and colorscheme 
+"------------------------
+if has('gui_running')
+	if has('gui_gtk')
+		set guifont=DejaVu\ Sans\ Mono\ 14
+	else
+		set guifont=DejaVu\ Sans\ Mono:h14
+	endif
+"-----------------------
+	" set transparency=5		"Set windows transparency
+endif
+"-----------------------
+" set background=Dark
+" colorscheme solarized	" Set colorscheme
+colorscheme desert	" Set colorscheme
+" colorscheme molokai	" Set colorscheme
+
+" colorscheme lucius	" Set colorscheme
+" LuciusDark LuciusDarkHighContrast LuciusDarkLowContrast
+" LuciusBlack LuciusBlackHighContrast LuciusBlackLowContrast 
+" LuciusLight 
+" LuciusLightLowContrast 
+" LuciusWhite 
+" LuciusWhiteLowContrast
+"-----------------------
+syntax enable
+
+" Personal preferences 
+set history=5000  "Increase the lines of history
+
+set completeopt+=longest "Optimize auto complete
+set completeopt-=preview "Optimize auto complete
+
+set columns=110
+set colorcolumn=100
+
+set number		"显示行号
+
+set laststatus=2
+set display+=lastline
+
+set ttimeout
+set timeoutlen=3000
+set ttimeoutlen=200
+"----------------------
+" Disable input mothed when leave insert mode 
+"----------------------
+" set noimd
+" set imi=2
+" set ims=2
+"----------------------
+" Set mouse
+"----------------------
+if has('mouse')
+    set mouse=a
+endif
+
+"----------------------
+" Set encoding
+"----------------------
+set encoding=utf-8 "Set utf-8 encoding
+set fenc=utf-8 "Set new file default encoding
+set fileencodings=ucs-bom,utf-8,cp936 "设置文件读取尝编码顺序
+
+set fileformats+=mac
+
+set autoread "Set autoread when a file is changed outside
+set autowrite 
+
+"-----------------------
+set autoindent " Preserve current indent on new lines
+set backspace=indent,eol,start
+set complete-=i
+set smarttab
+
+"-----------------------
+set tabstop=4
+set softtabstop=4
+
+"-----------------------
+" Set searching
+"-----------------------
+set hlsearch
+set incsearch
+set wrapscan
+"-----------------------
+" Set leader
+"-----------------------
+let maplocalleader = ","
+
+"-----------------------
+if !&scrolloff
+  set scrolloff=1	"使下一个查找对象自动垂直居中
+endif
+if !&sidescrolloff
+  set sidescrolloff=5	"使下一个查找对象自动水平居中
+endif
+
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+
+"-----------------------
+set formatoptions+=j " Delete comment character when joining commented lines
+
+if has('path_extra')
+  setglobal tags-=./tags tags-=./tags; tags^=./tags;
+endif
+
+if &shell =~# 'fish$'
+  set shell=/bin/bash
+endif
+
+"-----------------------
+if &tabpagemax < 50
+  set tabpagemax=50
+endif
+if !empty(&viminfo)
+  set viminfo^=!
+endif
+set sessionoptions-=options
+"-----------------------
+" open a NERDTree automatically when vim starts up
+"-----------------------
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"---------------------
+" set markdown-preview
+"---------------------
+let g:mkdp_path_to_chrome = "firefox"
+let g:mkdp_auto_start = 1
+"---------------------
+" set vimtex
+" --------------------
+" Set the viewer method
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_method = 'zathura'
+" Customization of the latexmk compiler
+let g:vimtex_compiler_latexmk = {
+  \ 'backend' : 'jobs',
+  \ 'background' : 1,
+  \ 'build_dir' : '',
+  \ 'callback' : 1,
+  \ 'continuous' : 1,
+  \ 'executable' : 'latexmk',
+  \ 'options' : [
+  \   '-pdf',
+  \   '-verbose',
+  \   '-file-line-error',
+  \   '-synctex=1',
+  \   '-interaction=nonstopmode',
+  \ ],
+  \}
+" Disable all warnings
+let g:vimtex_quickfix_latexlog = {'default' : 0}
+" Enable automatic completion with youcompleteme
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+      \ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+      \ 're!\\hyperref\[[^]]*',
+      \ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+      \ 're!\\(include(only)?|input){[^}]*',
+      \ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+      \ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\usepackage(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\documentclass(\s*\[[^]]*\])?\s*\{[^}]*',
+      \ 're!\\[A-Za-z]*',
+      \ ]
+"-----------------------
+" Set hot key
+"-----------------------
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> "清除并重绘显示屏
+map <silent> <C-n> :NERDTreeToggle<CR>	    " Open NERDTree with Ctrl-n
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>    " Open vimscript 
+inoremap jk <Esc>			    " Insert mode Esc map

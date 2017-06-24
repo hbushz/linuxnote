@@ -1,9 +1,23 @@
 # Linux Note
 这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
 
-## MacVim的配置---`macvimrc`说明
+## Ubuntu中GVim的配置---`vimrc`说明
+建议采用Vundle进行Vim插件管理, 非常方便.
 ### 如何在退出插入模式后屏蔽中文输入法?
-在Normal模式下中文输入法简直是噩梦, 最简单有效的屏蔽方式为
+在Normal模式下中文输入法简直是噩梦, 若你采用的是小企鹅输入法框架(Fcitx)的话, 最简单有效的屏蔽方式为
+使用插件`vim-scripts/fcitx.vim`. 只要在`vimrc`文件中加入
+
+		Plugin 'vim-scripts/fcitx.vim'
+
+就再也不用担心输入法的切换了.
+
+
+### 在用vim编辑Markdown文档时, 如何实现实时预览?
+
+
+## Mac OS中MacVim的配置---`macvimrc`说明
+### 如何在退出插入模式后屏蔽中文输入法?
+对于MacVim最简单有效的屏蔽方式为
 1. 在`vimrc`文件中加入
 
 		set noimd
@@ -44,4 +58,5 @@ ESC退出到命令模式时, 会自动禁用输入法. 但在查找模式中, �
 Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorscheme*为例)
 1. 将colorscheme配置文件`indigo.vimp`放置于`~/.vimperator/colors/`文件夹内
 2. 在`~/.vimperatorrc`文件中加入`colorscheme indigo`
-在[vimperator-colors](https://github.com/vimpr/vimperator-colors)仓库中可以很多colorscheme.
+在[vimperator-colors](https://github.com/vimpr/vimperator-colors)仓库中可以找到很多colorscheme.
+
