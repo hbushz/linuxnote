@@ -5,7 +5,7 @@
 建议采用Vundle进行Vim插件管理, 非常方便.
 ### 如何在退出插入模式后屏蔽中文输入法?
 在Normal模式下中文输入法简直是噩梦, 若你采用的是小企鹅输入法框架(Fcitx)的话, 最简单有效的屏蔽方式为
-使用插件`vim-scripts/fcitx.vim`. 只要在`vimrc`文件中加入
+使用插件[`vim-scripts/fcitx.vim`](https://github.com/vim-scripts/fcitx.vim). 只要在`vimrc`文件中加入
 
 		Plugin 'vim-scripts/fcitx.vim'
 
@@ -13,7 +13,13 @@
 
 
 ### 在用vim编辑Markdown文档时, 如何实现实时预览?
+请使用插件[`iamcco/markdown-preview.vim`](https://github.com/iamcco/markdown-preview.vim), 只要在`vimrc`文件中加入	
 
+		Plugin 'iamcco/markdown-preview.vim'
+		let g:mkdp_path_to_chrome = "firefox"
+		let g:mkdp_auto_start = 1
+
+感觉会非常爽.
 
 ## Mac OS中MacVim的配置---`macvimrc`说明
 ### 如何在退出插入模式后屏蔽中文输入法?
