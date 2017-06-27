@@ -250,6 +250,7 @@ let g:vimtex_compiler_latexmk = {
   \   '-pdf',
   \   '-verbose',
   \   '-file-line-error',
+  \   '-xelatex',
   \   '-synctex=1',
   \   '-interaction=nonstopmode',
   \ ],
