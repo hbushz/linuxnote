@@ -4,17 +4,18 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Ubuntu中GVim的配置---`vimrc`说明](#ubuntu中gvim的配置---vimrc说明)
-	* [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
-	* [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法)
-	* [在用vim编辑Markdown文档时, 如何实现实时预览?](#在用vim编辑markdown文档时-如何实现实时预览)
+	- [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
+	- [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法)
+	- [在用vim编辑Markdown文档时, 如何实现实时预览?](#在用vim编辑markdown文档时-如何实现实时预览)
 * [Mac OS中MacVim的配置---`macvimrc`说明](#mac-os中macvim的配置---macvimrc说明)
-	* [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法-1)
+	- [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法-1)
 * [Git的配置](#git的配置)
-	* [Git可以使用SSH协议授权, 当你在GitHub和Coding上都有账号时, 如何配置SSH?](#git可以使用ssh协议授权-当你在github和coding上都有账号时-如何配置ssh)
+	- [Git可以使用SSH协议授权, 当你在GitHub和Coding上都有账号时, 如何配置SSH?](#git可以使用ssh协议授权-当你在github和coding上都有账号时-如何配置ssh)
 * [Vimperator的配置---`vimperatorrc`说明](#vimperator的配置---vimperatorrc说明)
-	* [如何改变难看的配色?](#如何改变难看的配色)
+	- [如何改变难看的配色?](#如何改变难看的配色)
 
 <!-- vim-markdown-toc -->
+
 ## Ubuntu中GVim的配置---`vimrc`说明
 建议采用Vundle进行Vim插件管理, 非常方便.
 ### 能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?
