@@ -5,6 +5,7 @@
 
 * [Arch Linux相关配置](#arch-linux相关配置)
     - [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
+* [Linux中TeXLive的安装小记](#linux中texlive的安装小记)
 * [Linux中GVim的配置---`vimrc`说明](#linux中gvim的配置---vimrc说明)
     - [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
     - [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法)
@@ -38,6 +39,27 @@ Force Mathematica to use the system version of the zlib library.
         $ cd <INSTALL_DIR>/SystemFiles/Libraries/Linux-x86-64
         $ mv libz.so.1 libz.so.1.old
 
+## Linux中TeXLive的安装小记
+1. 首先在CTAN国内的镜像上下载TeXLive光盘镜像文件`texlive2018.iso`，推荐：
+    * [清华大学开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/)
+    * [中国科学技术大学开源镜像站](http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/)
+2. 为了使用图形化安装界面，需要安装`perl`的`tk`组件
+        sudo pacman -S perl-tk
+3. 加载镜像文件
+        sudo mount -o loop texlive2017.iso /mnt
+4. 启动图形安装界面
+        sudo /mnt/install-tl -gui
+5. 安装选项基本都是默认，只有最后两项
+    * 一定要创建指向系统目录的符号链接，选择默认路径即可
+    * 自动更新选项选择**否**
+6. 点击`安装TeX Live`，进行安装。安装持续时间大约10多分钟，直到出现`完成`按扭，点击完成。
+   然后卸载镜像文件
+        sudo umount /mnt
+7. 配置合适的CTAN源可以加快宏包更新的网速，以中科大的源为例：
+        sudo tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+   之后可以利用tlmgr进行网络更新。CTAN 上的包更新很频繁，所以即便是最新版的texlive2018，
+   其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
+        sudo tlmgr update --self --all
 ## Linux中GVim的配置---`vimrc`说明
 建议采用Vundle进行Vim插件管理, 非常方便.
 ### 能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?
@@ -143,4 +165,5 @@ Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorschem
 
 在这种配置下, 在命令模式中, 输入法自动会被禁用, 而进入插入模式后, 可以正常使用输入法.  
 ESC退出到命令模式时, 会自动禁用输入法. 但在查找模式中, 会启用输入法.
+
 
