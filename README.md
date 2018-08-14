@@ -4,6 +4,7 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Arch Linux相关配置](#arch-linux相关配置)
+    - [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
     - [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
 * [Linux中TeXLive的安装小记](#linux中texlive的安装小记)
 * [Linux中GVim的配置---`vimrc`说明](#linux中gvim的配置---vimrc说明)
@@ -21,6 +22,22 @@
 <!-- vim-markdown-toc -->
 
 ## Arch Linux相关配置
+
+### ArchlinuxCN 镜像使用帮助
+Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。
+包含中文用户常用软件、工具、字体/美化包等。
++ [官方仓库](http://repo.archlinuxcn.org)
++ [清华镜像](https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/)
+
+使用方法：在 `/etc/pacman.conf` 文件末尾添加以下两行：
+
+          [archlinuxcn]
+          Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+
+之后安装 archlinuxcn-keyring 包导入 GPG key:
+
+          sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
+
 ### Mathematica 11.3 conflicts with system libraries
 The Mathematica package includes a number of it's own libraries,
 located in InstallPath/SystemFiles/Libraries/Linux-x86-64.
@@ -46,7 +63,7 @@ Force Mathematica to use the system version of the zlib library.
 2. 为了使用图形化安装界面，需要安装`perl`的`tk`组件
         sudo pacman -S perl-tk
 3. 加载镜像文件
-        sudo mount -o loop texlive2017.iso /mnt
+        sudo mount -o loop texlive2018.iso /mnt
 4. 启动图形安装界面
         sudo /mnt/install-tl -gui
 5. 安装选项基本都是默认，只有最后两项
