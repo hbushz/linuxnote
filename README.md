@@ -1,29 +1,46 @@
 # Linux Note
+
 这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
 
-<!-- vim-markdown-toc GFM -->
 
-* [Arch Linux相关配置](#arch-linux相关配置)
-    - [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
-    - [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
-* [Linux中TeXLive的安装小记](#linux中texlive的安装小记)
-* [Linux中GVim的配置---`vimrc`说明](#linux中gvim的配置---vimrc说明)
-    - [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
-    - [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法)
-    - [在用vim编辑Markdown文档时, 如何实现实时预览?](#在用vim编辑markdown文档时-如何实现实时预览)
-* [Git的配置](#git的配置)
-    - [Git访问GitHub特别慢, 如何配置socks5代理?](#git访问github特别慢-如何配置socks5代理)
-    - [Git可以使用SSH协议授权, 当你在GitHub和Coding上都有账号时, 如何配置SSH?](#git可以使用ssh协议授权-当你在github和coding上都有账号时-如何配置ssh)
-* [Vimperator的配置---`vimperatorrc`说明](#vimperator的配置---vimperatorrc说明)
-    - [如何改变难看的配色?](#如何改变难看的配色)
-* [Mac OS中MacVim的配置---`macvimrc`说明](#mac-os中macvim的配置---macvimrc说明)
-    - [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法-1)
+## Arch Linux相关
 
-<!-- vim-markdown-toc -->
+### Archlinux 包管理器`pacman`的使用说明
 
-## Arch Linux相关配置
+1.  同步与升级
+　　安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。 
+        　　pacman -Syy
+　　也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
+        　　pacman -Syyu
+2.  安装软件包
+　　安装或者升级单个软件包，或者一列软件包（包含依赖包），使用如下命令： 
+        　　pacman -S package_name1 package_name2
+　　有时候在不同的软件仓库中，一个软件包有多个版本（比如extra和testing）。你可以选择一个来安装：
+        　　pacman -S extra/package_name
+        　　pacman -S testing/package_name
+　　你也可以在一个命令里同步包数据库并且安装一个软件包：
+        　　pacman -Sy package_name
+　　安装一个本地包（不从源里）： 
+        　　pacman -U /path/to/package/package_name-version.pkg.tar.gz 
+3. 卸载软件包
+　　删除单个软件包，保留其全部已经安装的依赖关系 
+        　　pacman -R package_name
+　　删除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系： 
+        　　pacman -Rs package_name
+4. 包数据库查询
+    可以使用 -Q 标志搜索和查询本地包数据库。详情参见
+        　　pacman -Q --help
+        　　pacman -Qi package_name     #显示查找的包信息
+        　　pacman -Ql package_name     #显示查找的包的安装位置
+　　可以使用-S 标志搜索和查询远程同步的包数据库。详情参见
+            pacman -Ss package_name
+5. 完全清理包缓存目录(/var/cache/pacman/pkg)：
+        　　pacman -Scc　　　　
+6. 下载包而不安装它：
+        　　pacman -Sw package_name
 
 ### ArchlinuxCN 镜像使用帮助
+
 Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。
 包含中文用户常用软件、工具、字体/美化包等。
 + [官方仓库](http://repo.archlinuxcn.org)
@@ -39,6 +56,7 @@ Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方�
           sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
 
 ### Mathematica 11.3 conflicts with system libraries
+
 The Mathematica package includes a number of it's own libraries,
 located in InstallPath/SystemFiles/Libraries/Linux-x86-64.
 They may lead to some compatibility issues and fallback to the system
@@ -57,6 +75,7 @@ Force Mathematica to use the system version of the zlib library.
         $ mv libz.so.1 libz.so.1.old
 
 ## Linux中TeXLive的安装小记
+
 1. 首先在CTAN国内的镜像上下载TeXLive光盘镜像文件`texlive2018.iso`，推荐：
     * [清华大学开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/)
     * [中国科学技术大学开源镜像站](http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/)
@@ -77,9 +96,13 @@ Force Mathematica to use the system version of the zlib library.
    之后可以利用tlmgr进行网络更新。CTAN 上的包更新很频繁，所以即便是最新版的texlive2018，
    其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
         sudo tlmgr update --self --all
+
 ## Linux中GVim的配置---`vimrc`说明
+
 建议采用Vundle进行Vim插件管理, 非常方便.
+
 ### 能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?
+
 使用插件[`vimtex`](https://github.com/lervag/vimtex/), 在`vimrc`文件中加入
 
 		Plugin 'lervag/vimtex'
@@ -111,6 +134,7 @@ Force Mathematica to use the system version of the zlib library.
 
 
 ### 如何在退出插入模式后屏蔽中文输入法?
+
 在Normal模式下中文输入法简直是噩梦, 若你采用的是小企鹅输入法框架(Fcitx)的话, 最简单有效的屏蔽方式为
 使用插件[`fcitx`](https://github.com/vim-scripts/fcitx.vim). 只要在`vimrc`文件中加入
 
@@ -120,6 +144,7 @@ Force Mathematica to use the system version of the zlib library.
 
 
 ### 在用vim编辑Markdown文档时, 如何实现实时预览?
+
 请使用插件[`markdown-preview`](https://github.com/iamcco/markdown-preview.vim), 只要在`vimrc`文件中加入	
 
         Plugin 'iamcco/markdown-preview.vim'
@@ -128,7 +153,9 @@ Force Mathematica to use the system version of the zlib library.
 感觉会非常爽.
 
 ## Git的配置
+
 ### Git访问GitHub特别慢, 如何配置socks5代理?
+
 可以只对github进行全局代理设置，对国内的仓库不影响
 
         git config --global http.https://github.com.proxy socks5://127.0.0.1:1086
@@ -144,6 +171,7 @@ Force Mathematica to use the system version of the zlib library.
         git config --global http.postBuffer 524288000
 
 ### Git可以使用SSH协议授权, 当你在GitHub和Coding上都有账号时, 如何配置SSH?
+
 假设已经有一个Coding的密钥(文件名默认为`id_rsa`与`id_rsa.pub`)，需要需要添加Github的密钥
 1. 生成指定名字的密钥
 
@@ -162,7 +190,9 @@ Force Mathematica to use the system version of the zlib library.
 	**注意:** 两条记录间用空行分隔
 
 ## Vimperator的配置---`vimperatorrc`说明
+
 ### 如何改变难看的配色?
+
 Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorscheme*为例)
 1. 将colorscheme配置文件`indigo.vimp`放置于`~/.vimperator/colors/`文件夹内
 2. 在`~/.vimperatorrc`文件中加入`colorscheme indigo`
@@ -170,7 +200,9 @@ Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorschem
 在[vimperator-colors](https://github.com/vimpr/vimperator-colors)仓库中可以找到很多colorscheme.
 
 ## Mac OS中MacVim的配置---`macvimrc`说明
+
 ### 如何在退出插入模式后屏蔽中文输入法?
+
 对于MacVim最简单有效的屏蔽方式为
 1. 在`vimrc`文件中加入
 
