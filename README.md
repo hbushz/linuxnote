@@ -3,7 +3,46 @@
 这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
 
 
+<!-- vim-markdown-toc GFM -->
+
+* [Arch Linux相关](#arch-linux相关)
+    - [NetworkManager(无线网络相关)](#networkmanager无线网络相关)
+    - [Archlinux 包管理器`pacman`的使用说明](#archlinux-包管理器pacman的使用说明)
+    - [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
+    - [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
+* [Linux中TeXLive的安装小记](#linux中texlive的安装小记)
+* [Linux中GVim的配置---`vimrc`说明](#linux中gvim的配置---vimrc说明)
+    - [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
+    - [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法)
+    - [在用vim编辑Markdown文档时, 如何实现实时预览?](#在用vim编辑markdown文档时-如何实现实时预览)
+* [Git的配置](#git的配置)
+    - [Git访问GitHub特别慢, 如何配置socks5代理?](#git访问github特别慢-如何配置socks5代理)
+    - [Git可以使用SSH协议授权, 当你在GitHub和Coding上都有账号时, 如何配置SSH?](#git可以使用ssh协议授权-当你在github和coding上都有账号时-如何配置ssh)
+* [Vimperator的配置---`vimperatorrc`说明](#vimperator的配置---vimperatorrc说明)
+    - [如何改变难看的配色?](#如何改变难看的配色)
+* [Mac OS中MacVim的配置---`macvimrc`说明](#mac-os中macvim的配置---macvimrc说明)
+    - [如何在退出插入模式后屏蔽中文输入法?](#如何在退出插入模式后屏蔽中文输入法-1)
+
+<!-- vim-markdown-toc -->
+
 ## Arch Linux相关
+
+### NetworkManager(无线网络相关)
+
+1. Start NetworkManager:
+        systemctl start NetworkManager
+2. Make it auto-start on boot:
+        systemctl enable NetworkManager
+3. Use command-line tool `nmcli` to connect to a wireless network:
+    * check the radio is enabled
+            nmcli radio
+    * show wifi device
+            nmcli device
+    * To actually connect to a wireless AP:
+            nmcli device wifi rescan
+            nmcli device wifi list
+            nmcli device wifi connect SSID-Name password wireless-password
+        where `SSID-Name` is 无线路由名称，`wireless-password` 是无线密码。
 
 ### Archlinux 包管理器`pacman`的使用说明
 
