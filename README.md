@@ -6,10 +6,11 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Arch Linux相关](#arch-linux相关)
-    - [NetworkManager(无线网络相关)](#networkmanager无线网络相关)
-    - [Archlinux 包管理器`pacman`的使用说明](#archlinux-包管理器pacman的使用说明)
-    - [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
-    - [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
+        + [NetworkManager(无线网络相关)](#networkmanager无线网络相关)
+        + [Archlinux 包管理器`pacman`的使用说明](#archlinux-包管理器pacman的使用说明)
+        + [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
+        + [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
+        + [Arch Linux中`autojump`的安装小记](#arch-linux中autojump的安装小记)
 * [Linux中TeXLive的安装小记](#linux中texlive的安装小记)
 * [Linux中GVim的配置---`vimrc`说明](#linux中gvim的配置---vimrc说明)
     - [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
@@ -27,7 +28,7 @@
 
 ## Arch Linux相关
 
-### NetworkManager(无线网络相关)
+#### NetworkManager(无线网络相关)
 
 1. Start NetworkManager:
         systemctl start NetworkManager
@@ -44,7 +45,7 @@
             nmcli device wifi connect SSID-Name password wireless-password
         where `SSID-Name` is 无线路由名称，`wireless-password` 是无线密码。
 
-### Archlinux 包管理器`pacman`的使用说明
+#### Archlinux 包管理器`pacman`的使用说明
 
 1.  同步与升级
 　　安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。 
@@ -78,7 +79,7 @@
 6. 下载包而不安装它：
         　　pacman -Sw package_name
 
-### ArchlinuxCN 镜像使用帮助
+#### ArchlinuxCN 镜像使用帮助
 
 Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。
 包含中文用户常用软件、工具、字体/美化包等。
@@ -94,7 +95,7 @@ Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方�
 
           sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
 
-### Mathematica 11.3 conflicts with system libraries
+#### Mathematica 11.3 conflicts with system libraries
 
 The Mathematica package includes a number of it's own libraries,
 located in InstallPath/SystemFiles/Libraries/Linux-x86-64.
@@ -112,6 +113,19 @@ Force Mathematica to use the system version of the zlib library.
 
         $ cd <INSTALL_DIR>/SystemFiles/Libraries/Linux-x86-64
         $ mv libz.so.1 libz.so.1.old
+
+#### Arch Linux中`autojump`的安装小记
+
+When you install `autojump`, you should do this post-installation instructions.
+
+If you use bash try doing this command in terminal:
+
+    echo "source /usr/share/autojump/autojump.bash" >> ~/.bashrc
+
+zsh users:
+
+    echo "source /usr/share/autojump/autojump.zsh" >> ~/.zshrc
+
 
 ## Linux中TeXLive的安装小记
 
