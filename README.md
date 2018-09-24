@@ -6,11 +6,11 @@
 <!-- vim-markdown-toc GFM -->
 
 * [Arch Linux相关](#arch-linux相关)
-        + [NetworkManager(无线网络相关)](#networkmanager无线网络相关)
-        + [Archlinux 包管理器`pacman`的使用说明](#archlinux-包管理器pacman的使用说明)
-        + [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
-        + [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
-        + [Arch Linux中`autojump`的安装小记](#arch-linux中autojump的安装小记)
+    - [NetworkManager(无线网络相关)](#networkmanager无线网络相关)
+    - [Archlinux 包管理器`pacman`的使用说明](#archlinux-包管理器pacman的使用说明)
+    - [ArchlinuxCN 镜像使用帮助](#archlinuxcn-镜像使用帮助)
+    - [Mathematica 11.3 conflicts with system libraries](#mathematica-113-conflicts-with-system-libraries)
+    - [Arch Linux中`autojump`的安装小记](#arch-linux中autojump的安装小记)
 * [Linux中TeXLive的安装小记](#linux中texlive的安装小记)
 * [Linux中GVim的配置---`vimrc`说明](#linux中gvim的配置---vimrc说明)
     - [能否用Vim来编辑LaTeX文档, 实现TeX文档的集成写作环境?](#能否用vim来编辑latex文档-实现tex文档的集成写作环境)
@@ -28,58 +28,89 @@
 
 ## Arch Linux相关
 
-#### NetworkManager(无线网络相关)
+### NetworkManager(无线网络相关)
 
 1. Start NetworkManager:
+
         systemctl start NetworkManager
+
 2. Make it auto-start on boot:
+
         systemctl enable NetworkManager
+
 3. Use command-line tool `nmcli` to connect to a wireless network:
     * check the radio is enabled
-            nmcli radio
-    * show wifi device
-            nmcli device
-    * To actually connect to a wireless AP:
-            nmcli device wifi rescan
-            nmcli device wifi list
-            nmcli device wifi connect SSID-Name password wireless-password
-        where `SSID-Name` is 无线路由名称，`wireless-password` 是无线密码。
 
-#### Archlinux 包管理器`pacman`的使用说明
+            nmcli radio
+
+    * show wifi device
+
+            nmcli device
+
+    * To actually connect to a wireless AP:
+
+        nmcli device wifi rescan
+        nmcli device wifi list
+        nmcli device wifi connect SSID-Name password wireless-password # where `SSID-Name` is 无线路由名称，`wireless-password` 是无线密码。
+
+### Archlinux 包管理器`pacman`的使用说明
 
 1.  同步与升级
-　　安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。 
-        　　pacman -Syy
-　　也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
-        　　pacman -Syyu
+* 安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。 
+
+        pacman -Syy
+    
+* 也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
+
+        pacman -Syyu
+
+
 2.  安装软件包
-　　安装或者升级单个软件包，或者一列软件包（包含依赖包），使用如下命令： 
+* 安装或者升级单个软件包，或者一列软件包（包含依赖包），使用如下命令： 
+
         　　pacman -S package_name1 package_name2
-　　有时候在不同的软件仓库中，一个软件包有多个版本（比如extra和testing）。你可以选择一个来安装：
+
+* 有时候在不同的软件仓库中，一个软件包有多个版本（比如extra和testing）。你可以选择一个来安装：
+
         　　pacman -S extra/package_name
         　　pacman -S testing/package_name
-　　你也可以在一个命令里同步包数据库并且安装一个软件包：
+
+* 你也可以在一个命令里同步包数据库并且安装一个软件包：
+
         　　pacman -Sy package_name
-　　安装一个本地包（不从源里）： 
+
+* 安装一个本地包（不从源里）： 
+
         　　pacman -U /path/to/package/package_name-version.pkg.tar.gz 
+
 3. 卸载软件包
-　　删除单个软件包，保留其全部已经安装的依赖关系 
+* 删除单个软件包，保留其全部已经安装的依赖关系 
+
         　　pacman -R package_name
-　　删除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系： 
+
+* 删除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系： 
+
         　　pacman -Rs package_name
+
 4. 包数据库查询
-    可以使用 -Q 标志搜索和查询本地包数据库。详情参见
+* 可以使用 -Q 标志搜索和查询本地包数据库。详情参见
+
         　　pacman -Q --help
         　　pacman -Qi package_name     #显示查找的包信息
-        　　pacman -Ql package_name     #显示查找的包的安装位置
-　　可以使用-S 标志搜索和查询远程同步的包数据库。详情参见
+        　　pacman -Ql package_name     #显示查找的包的安装
+* 可以使用-S 标志搜索和查询远程同步的包数据库。详情参见
+
             pacman -Ss package_name
-5. 完全清理包缓存目录(/var/cache/pacman/pkg)：
+
+5. 完全清理包缓存目录(`/var/cache/pacman/pkg`)：
+
         　　pacman -Scc　　　　
-6. 下载包而不安装它：
+
+7. 下载包而不安装它：
+
         　　pacman -Sw package_name
 
-#### ArchlinuxCN 镜像使用帮助
+### ArchlinuxCN 镜像使用帮助
 
 Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。
 包含中文用户常用软件、工具、字体/美化包等。
@@ -114,7 +145,7 @@ Force Mathematica to use the system version of the zlib library.
         $ cd <INSTALL_DIR>/SystemFiles/Libraries/Linux-x86-64
         $ mv libz.so.1 libz.so.1.old
 
-#### Arch Linux中`autojump`的安装小记
+### Arch Linux中`autojump`的安装小记
 
 When you install `autojump`, you should do this post-installation instructions.
 
