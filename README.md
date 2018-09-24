@@ -126,7 +126,7 @@ Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方�
 
           sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
 
-#### Mathematica 11.3 conflicts with system libraries
+### Mathematica 11.3 conflicts with system libraries
 
 The Mathematica package includes a number of it's own libraries,
 located in InstallPath/SystemFiles/Libraries/Linux-x86-64.
