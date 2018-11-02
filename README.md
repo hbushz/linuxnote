@@ -3,33 +3,7 @@
 这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
 
 
-
 ## Arch Linux相关
-
-### NetworkManager(无线网络相关)
-
-1. Start NetworkManager:
-
-        systemctl start NetworkManager
-
-2. Make it auto-start on boot:
-
-        systemctl enable NetworkManager
-
-3. Use command-line tool `nmcli` to connect to a wireless network:
-    * check the radio is enabled
-
-            nmcli radio
-
-    * show wifi device
-
-            nmcli device
-
-    * To actually connect to a wireless AP:
-
-            nmcli device wifi rescan
-            nmcli device wifi list
-            nmcli device wifi connect SSID-Name password wireless-password # where `SSID-Name` is 无线路由名称，`wireless-password` 是无线密码。
 
 ### Archlinux 包管理器`pacman`的使用说明
 
@@ -123,6 +97,31 @@ Force Mathematica to use the system version of the zlib library.
         $ cd <INSTALL_DIR>/SystemFiles/Libraries/Linux-x86-64
         $ mv libz.so.1 libz.so.1.old
 
+### NetworkManager(无线网络相关)
+
+1. Start NetworkManager:
+
+        systemctl start NetworkManager
+
+2. Make it auto-start on boot:
+
+        systemctl enable NetworkManager
+
+3. Use command-line tool `nmcli` to connect to a wireless network:
+    * check the radio is enabled
+
+            nmcli radio
+
+    * show wifi device
+
+            nmcli device
+
+    * To actually connect to a wireless AP:
+
+            nmcli device wifi rescan
+            nmcli device wifi list
+            nmcli device wifi connect SSID-Name password wireless-password # where `SSID-Name` is 无线路由名称，`wireless-password` 是无线密码。
+
 ### Arch Linux中`autojump`的安装小记
 
 When you install `autojump`, you should do this post-installation instructions.
@@ -135,6 +134,16 @@ zsh users:
 
     echo "source /usr/share/autojump/autojump.zsh" >> ~/.zshrc
 
+### Custom sddm DPI
+
+In order to set custom DPI for high resolution screens you should configure Xorg
+yourself. An easy way is to pass an additional argument to Xorg.
+
+Edit `/etc/sddm.conf`, go to the X11 section and change ServerArguments like this:
+
+    ServerArguments=-nolisten tcp -dpi 192
+
+to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问题)
 
 ## Linux中TeXLive的安装小记
 
