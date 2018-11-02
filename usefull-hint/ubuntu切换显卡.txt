@@ -1,0 +1,35 @@
+ 现在的笔记本电脑通常有两块显卡：Intel集成显卡和Nvidia（英伟达）独立显卡。这篇教程介绍Ubuntu如何正确地切换Intel和Nvidia显卡。
+ 
+你应该使用哪一个显卡？
+对于玩游戏或3D制图，图形计算这样对显卡要求高的任务，你需要使用Nvidia独立显卡。如果你既不玩游戏，不绘制3D制图，也不用图形计算，那么集成在Intel处理器的Intel显卡就足够了。Intel显卡耗电更少。
+ 
+第1步：检查你的电脑有哪些显卡
+这很简单，打开终端，粘贴下面的命令就行了。
+lspci -k | grep -A 2 -i "VGA"
+
+ 可以看见，我们笔记本有两Intel显卡和Nvidia显卡。如果你的电脑也有这两种显卡，那么继续阅读。
+ 
+第2步：查看Ubuntu正在使用哪块显卡
+Ubuntu默认使用Intel集成显卡。如果你以前做过更改，但现在你不记得使用哪一块显卡了，那么打开系统设置 > 细节 窗口。你将会看见Ubuntu正在使用哪一块显卡。
+ 
+第3步：安装Nvidia专有显卡驱动
+Ubuntu自带了为Nvidia显卡开发的开源Nouveau驱动。这个Nouveau驱动是包含在Linux内核中的。但是它不支持3D加速。为了获得最佳图形性能，我们用software-properties-gtk这个程序来安装专有的Nvidia显卡驱动。在终端里输入下面的命令打开software-properties-gtk。
+software-properties-gtk
+这将打开软件与更新窗口。点击额外驱动标签。你可以看见Ubuntu默认为Nvidia显卡启用了Nouveau开源驱动，并且列出了可以安装的专有显卡驱动。
+
+ 一般我们可以安装最高版本的专有显卡驱动。也可以在终端里输入下面的命令来查看哪一个专有驱动是推荐安装的。
+sudo ubuntu-drivers devices
+
+可以看见，在我的电脑上，nvidia-352是推荐安装的驱动。所以我在终端里输入下面的命令安装这个驱动。
+sudo apt-get install nvidia-352
+专有驱动安装后，重新打开软件与更新窗口。你应该可以发现Ubuntu自动选择了新安装的专有驱动。如果没有的话，则选择刚安装好的专有驱动，再点击右下角的应用更改按钮。
+
+ 第4步：切换到Nvidia显卡
+为Nvidia显卡选择了专有驱动后，你可能需要重启电脑来启用Nvidia的prime支持。如果不支持prime，你会发现如下消息。
+Message: PRIME: is it supported? no
+重启电脑后，在Unity的Dash中打开Nvidia X Server Settings （Nvidia X服务器设置）窗口。也可以在终端里输入下面的命令打开。
+nvidia-settings
+
+在左侧栏选择PRIME Profiles标签，然后在右边的窗口中选择Nvidia显卡。再次打开系统设置 >  细节窗口，你会发现Ubuntu正在使用Nvidia显卡。
+
+如果要切换回Intel集成显卡，在PRIME Profiles里选择Intel就行了。

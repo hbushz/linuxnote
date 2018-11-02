@@ -260,6 +260,12 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 
 	**注意:** 两条记录间用空行分隔
 
+## Linux 与 Windows 双系统设置
+
+### Linux 与 Windows 的时间差校正
+
+
+
 ## Vimperator的配置---`vimperatorrc`说明
 
 ### 如何改变难看的配色?
@@ -271,6 +277,3 @@ Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorschem
 在[vimperator-colors](https://github.com/vimpr/vimperator-colors)仓库中可以找到很多colorscheme.
 
 ## Mac OS中MacVim的配置---`macvimrc`说明
-<!-- vim-markdown-toc GFM -->
-
-<!-- vim-markdown-toc -->

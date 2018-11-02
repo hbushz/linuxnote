@@ -1,0 +1,568 @@
+" Modeline and Notes {{{
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
+"
+"                                    _
+"         ___  _ __ ___      __   __(_)_ __ ___
+"        / __|| '_ ` _ \ ____\ \ / /| | '_ ` _ \
+"        \__ \| | | | | |____|\ V / | | | | | | |
+"        |___/|_| |_| |_|      \_/  |_|_| |_| |_|
+"
+"   This is the personal .vimrc file of ShuoMo.
+"
+" }}}
+
+set nocompatible              " be iMproved, required
+
+" Plugin {{{
+        filetype off                  " required
+
+        " set the runtime path to include Vundle and initialize
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#begin()
+        " alternatively, pass a path where Vundle should install plugins
+        "call vundle#begin('~/some/path/here')
+
+        " let Vundle manage Vundle, required
+        Plugin 'VundleVim/Vundle.vim'
+
+        " The following are examples of different formats supported.
+        " Keep Plugin commands between vundle#begin/end.
+        " plugin on GitHub repo (General enhancement)
+
+        Plugin 'tpope/vim-abolish.git'          "模糊匹配
+        " Plugin 'tpope/vim-characterize.git'   "解析当前字符的编码ga
+        Plugin 'tpope/vim-commentary.git'       "利用\\{motion}来切换指定行的注释状态
+        Plugin 'tpope/vim-dispatch.git'
+        Plugin 'tpope/vim-eunuch.git'           "Vim sugar for the UNIX shell commands
+                                                " that need it the most. For example
+                                                " :SudoWrite Write a privileged file 
+                                                " with sudo.
+
+        Plugin 'tpope/vim-fugitive.git'         "调用Git
+        " Plugin 'tpope/vim-ragtag.git'
+        Plugin 'tpope/vim-repeat.git'           "Remaps . in a way that plugins can tap into it.
+        " Plugin 'tpope/vim-scriptease.git'
+        " Plugin 'tpope/vim-sensible.git'       "Make a universal set of defaults(注意这个设置与我的自己的设置有点重复，需要修改但值得借鉴）
+        " Plugin 'tpope/vim-sleuth.git'         "This plugin automatically adjusts 'shiftwidth' and 'expandtab'
+        Plugin 'tpope/vim-speeddating'          "快速输入日期时间
+        Plugin 'tpope/vim-surround.git'         "Delete change and add surroundings in pairs
+        " Plugin 'tpope/vim-tbone.git'
+        " Plugin 'tpope/vim-unimpaired.git'     "以[]括号为核心的快键
+        " Plugin 'tpope/vim-projectile.git'
+
+        " Custom textobjects
+        " Plugin 'kana/vim-textobj-user.git'
+        " Plugin 'kana/vim-textobj-entire.git'
+        " Plugin 'kana/vim-textobj-indent.git'
+        " Plugin 'kana/vim-textobj-syntax.git'
+        " Plugin 'kana/vim-textobj-line.git'
+
+        " Vim Markdown  mode
+        Plugin 'godlygeek/tabular'
+        Plugin 'plasticboy/vim-markdown'
+        Plugin 'mzlogin/vim-markdown-toc'
+        Plugin 'suan/vim-instant-markdown'
+        " Plugin 'iamcco/markdown-preview.vim'
+        Plugin 'iamcco/mathjax-support-for-mkdp'
+
+        " A modern vim plugin for editing LaTeX files
+        Plugin 'lervag/vimtex.git'
+
+        " Vim python-mode
+        " Plugin 'python-mode/python-mode'
+        Plugin 'w0rp/ale'
+
+        " Vim html-mode
+        Plugin 'mattn/emmet-vim'
+
+        " Colorscheme
+        " Plugin 'altercation/vim-colors-solarized'
+        Plugin 'fugalh/desert.vim'
+        " Plugin 'tomasr/molokai'
+        " Plugin 'jonathanfilip/vim-lucius'
+
+        " lean & mean status/tabline for vim that's light as air
+        Plugin 'bling/vim-airline'
+        "Plugin 'vim-airline/vim-airline'
+        "Plugin 'vim-airline/vim-airline-themes'
+
+        " A tree explorer plugin for vim.
+        Plugin 'scrooloose/nerdtree'
+
+        " Auto-completetion for brackets
+        Plugin 'Raimondi/delimitMate'
+
+        " Auto switch input methods
+        " Plugin 'CodeFalling/fcitx-vim-osx'
+        Plugin 'vim-scripts/fcitx.vim'
+
+        " 中文帮助
+        Plugin 'yianwillis/vimcdoc'
+
+        " Syntax checking hacks for vim
+        " Plugin 'vim-syntastic/syntastic'
+
+        " A code-completion engine for vim
+        " Plugin 'Shougo/neocomplete.vim'
+        Plugin 'Valloric/YouCompleteMe.git'
+
+        " Plugin 'SirVer/ultisnips' " Track the engine.
+        " Plugin 'honza/vim-snippets' " Snippets are separated from the engine.
+
+        " " plugin from http://vim-scripts.org/vim/scripts.html
+        " Plugin 'L9'
+        " " Git plugin not hosted on GitHub
+        " Plugin 'git://git.wincent.com/command-t.git'
+        " " git repos on your local machine (i.e. when working on your own plugin)
+        " Plugin 'file:///home/gmarik/path/to/plugin'
+        " " The sparkup vim script is in a subdirectory of this repo called vim.
+        " " Pass the path to set the runtimepath properly.
+        " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+        " " Avoid a name conflict with L9
+        " Plugin 'user/L9', {'name': 'newL9'}
+
+
+
+        " All of your Plugins must be added before the following line
+        call vundle#end()            " required
+        filetype plugin indent on    " Automatically detect file types.
+        " To ignore plugin indent changes, instead use:
+        "filetype plugin on
+        "
+        " Brief help
+        " :PluginList       - lists configured plugins
+        " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+        " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+        " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+        "
+        " see :h vundle for more details or wiki for FAQ
+        " Put your non-Plugin stuff after this line
+        "
+" }}}
+
+" General {{{
+        syntax enable
+
+        set history=5000                "Increase the lines of history
+
+        "-----------------------
+        " Set line and column
+        "-----------------------
+        set number                      " Line numbers on
+        " set cursorline                  " Highlight current line
+
+        set columns=100
+        set colorcolumn=90
+        " set virtualedit=onemore         " Allow for cursor beyond last character
+
+        "-----------------------
+        " Set statusline
+        "-----------------------
+        set laststatus=2
+        " set display+=lastline
+        " set showmode   " Display the current mode
+        set vb
+
+        "-----------------------
+        " Set cmdline
+        "-----------------------
+        set showcmd    " Show partial commands in status line and
+        set wildmenu                    " Show list instead of just completing
+        set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+
+        set timeout
+        set timeoutlen=2000
+        set ttimeout
+        set ttimeoutlen=50
+
+        "-----------------------
+        " Set searching
+        "-----------------------
+        set wrapscan
+        set incsearch                   " Find as you type search
+        set hlsearch                    " Highlight search terms
+
+        "----------------------
+        " Set mouse
+        "----------------------
+        if has('mouse')
+            set mouse=a       " Automatically enable mouse usage
+           "set mousehide     " Hide the mouse cursor while typing
+        endif
+
+        "----------------------
+        " Set encoding
+        "----------------------
+        set encoding=utf-8 "Set utf-8 encoding
+        set fileencoding=utf-8 "Set new file default encoding
+        set fileencodings=ucs-bom,utf-8,cp936 "设置文件读取尝编码顺序
+
+        "-----------------------
+        set fileformats+=mac
+        set autoread "Set autoread when a file is changed outside
+        set autowrite
+
+
+        "-----------------------
+        set complete-=i
+        set smarttab
+        "-----------------------
+        set completeopt+=longest "Optimize auto complete
+        set completeopt-=preview "Optimize auto complete
+
+        set showmatch                   " Show matching brackets/parenthesis
+        set backspace=indent,eol,start  " Backspace for dummies
+        set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+" }}}
+
+" Vim UI and Formatting {{{
+
+    " Vim UI {{{
+        "-----------------------
+        " Set colorscheme 
+        "------------------------
+        " colorscheme lucius      " Set colorscheme
+        " LuciusLight
+        " LuciusDark LuciusDarkHighContrast LuciusDarkLowContrast
+        " LuciusBlack LuciusBlackHighContrast LuciusBlackLowContrast 
+        " LuciusLightLowContrast 
+        " LuciusWhite 
+        " LuciusWhiteLowContrast
+
+        " set background=dark
+        " colorscheme solarized " Set colorscheme
+        colorscheme desert    " Set colorscheme
+        " colorscheme molokai   " Set colorscheme
+
+        "-------------------------------
+        " Set GUI font and transparency
+        "-------------------------------
+        if has('gui_running')
+            set guioptions-=m
+            set guioptions-=T
+            set guioptions-=r
+            set guioptions-=L
+            set guioptions-=b
+            if has('gui_gtk')
+                set guifont=DejaVu\ Sans\ Mono\ 13
+                set guifontwide=Microsoft\ YaHei\ Mono\ 12
+            else
+                set guifont=DejaVu\ Sans\ Mono:h13
+                set guifontwide=Microsoft\ YaHei\ Mono:h12
+            endif
+            " set guifont=Monaco:h16
+            " set transparency=5		"Set windows transparency
+        endif
+
+        "----------------------
+        " Set input method
+        "----------------------
+        " set noimd
+        " set iminsert=2
+        " set imsearch=1
+        "
+        " set noimdisable
+        " autocmd! InsertLeave * set imdisable|set iminsert=0
+        " autocmd! InsertEnter * set noimdisable|set iminsert=0
+    " }}}
+
+    " Formatting {{{
+
+        set autoindent                  " Indent at the same level of the previous line
+        set shiftwidth=4                " Use indents of 4 spaces
+        set expandtab                   " Tabs are spaces, not tabs
+        set tabstop=4                   " An indentation every four columns
+        set softtabstop=4               " Let backspace delete indent
+
+        set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+        set formatoptions+=j            " Delete comment character when joining commented lines
+
+        set splitright                  " Puts new vsplit windows to the right of the current
+        set splitbelow                  " Puts new split windows to the bottom of the current
+
+        set nowrap                      " Do not wrap long lines
+        set scrolloff=1                 "使下一个查找对象自动垂直居中
+        set sidescrolloff=5             "使下一个查找对象自动水平居中
+
+        set list
+        set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
+
+
+        if &shell =~# 'fish$'
+          set shell=/bin/bash
+        endif
+
+        "-----------------------
+        if &tabpagemax < 50
+          set tabpagemax=50
+        endif
+        if !empty(&viminfo)
+          set viminfo^=!
+        endif
+        set sessionoptions-=options
+    " }}}
+
+" }}}
+
+" New feature {{{
+        "----------------------
+        " Set clipboard
+        "----------------------
+        " if has('clipboard')
+        "     if has('unnamedplus')  " When possible use + register for copy-paste
+        "         set clipboard=unnamed,unnamedplus
+        "     else         " On mac and Windows, use * register for copy-paste
+        "         set clipboard=unnamed
+        "     endif
+        " endif
+
+        "----------------------
+        " Set backup
+        "----------------------
+        set backup                  " Backups are nice ...
+        if has('persistent_undo')
+            set undofile                " So is persistent undo ...
+            set undolevels=1000         " Maximum number of changes that can be undone
+            set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+        endif
+        "---------------------------------------------
+        " Always switch to the current file directory
+        "---------------------------------------------
+        autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+        "--------------------------------------------------------------
+        " Restore cursor to file position in previous editing session
+        "--------------------------------------------------------------
+        function! ResCur()
+            if line("'\"") <= line("$")
+                silent! normal! g`"
+                return 1
+            endif
+        endfunction
+
+        augroup resCur
+            autocmd!
+            autocmd BufWinEnter * call ResCur()
+        augroup END
+" }}}
+
+" Initialize directories {{{
+        function! InitializeDirectories()
+            let parent = $HOME
+            let prefix = 'vim'
+            let dir_list = {
+                        \ 'backup': 'backupdir',
+                        \ 'views': 'viewdir',
+                        \ 'swap': 'directory' }
+
+            if has('persistent_undo')
+                let dir_list['undo'] = 'undodir'
+            endif
+
+            " To specify a directory in which to place the vimbackup,
+            " vimviews, vimundo, and vimswap files/directories
+            let common_dir = parent . '/.' . prefix
+
+            for [dirname, settingname] in items(dir_list)
+                let directory = common_dir . dirname . '/'
+                if exists("*mkdir")
+                    if !isdirectory(directory)
+                        call mkdir(directory)
+                    endif
+                endif
+                if !isdirectory(directory)
+                    echo "Warning: Unable to create backup directory: " . directory
+                    echo "Try: mkdir -p " . directory
+                else
+                    let directory = substitute(directory, " ", "\\\\ ", "g")
+                    exec "set " . settingname . "=" . directory
+                endif
+            endfor
+        endfunction
+        call InitializeDirectories()
+" }}}
+
+" Plugin Config {{{
+
+    " markdown-preview {{{
+        "---------------------
+        " set markdown-preview
+        " --------------------
+        " let g:mkdp_path_to_chrome = "firefox"
+        " path to the chrome or the command to open chrome(or other modern browsers)
+        " if set, g:mkdp_browserfunc would be ignored
+
+        " let g:mkdp_auto_start = 0
+        " set to 1, the vim will open the preview window once enter the markdown
+        " buffer
+
+        " let g:mkdp_auto_open = 0
+        " set to 1, the vim will auto open preview window when you edit the
+        " markdown file
+
+        " let g:mkdp_auto_close = 1
+        " set to 1, the vim will auto close current preview window when change
+        " from markdown buffer to another buffer
+
+        " let g:mkdp_refresh_slow = 0
+        " set to 1, the vim will just refresh markdown when save the buffer or
+        " leave from insert mode, default 0 is auto refresh markdown as you edit or
+        " move the cursor
+    " }}}
+
+    " vim-markdown-toc {{{
+        "---------------------
+        " set vim-markdown-toc
+        " --------------------
+        let g:vmt_cycle_list_item_markers = 1
+    " }}}
+
+    " vim-airline {{{
+        ""---------------------
+        "" set airline theme
+        "" --------------------
+        "let g:airline_theme='solarized'
+        "" let g:airline_theme='papercolor'
+        ""---------------------
+        "" set unicode symbols
+        "" --------------------
+        "if !exists('g:airline_symbols')
+        "let g:airline_symbols = {}
+        "endif
+
+        "let g:airline_left_sep = '»'
+        "let g:airline_left_sep = '>'
+        "let g:airline_right_sep = '«'
+        "let g:airline_right_sep = '<'
+        "let g:airline_symbols.crypt = '🔒'
+        "let g:airline_symbols.linenr = '☰'
+        "let g:airline_symbols.linenr = '␊'
+        "let g:airline_symbols.linenr = '␤'
+        "let g:airline_symbols.linenr = '¶'
+        "let g:airline_symbols.maxlinenr = ''
+        "let g:airline_symbols.maxlinenr = '㏑'
+        "let g:airline_symbols.branch = '⎇'
+        "let g:airline_symbols.paste = 'ρ'
+        "let g:airline_symbols.paste = 'Þ'
+        "let g:airline_symbols.paste = '∥'
+        "let g:airline_symbols.spell = 'Ꞩ'
+        "let g:airline_symbols.notexists = '∄'
+        "let g:airline_symbols.whitespace = 'Ξ'
+    " }}}
+
+    " YouCompleteme {{{
+       let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+       let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+       let g:ycm_min_num_of_chars_for_completion=2     " 从第2个键入字符就开始罗列匹配项
+       let g:ycm_seed_identifiers_with_syntax=1        " 语法关键字补全
+       " Enable omni completion.
+       autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+       autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+       autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+       autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+       autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+       autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+       autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    " }}}
+
+    " syntastic {{{
+        " set statusline+=%#warningmsg#
+        " set statusline+=%{SyntasticStatuslineFlag()}
+        " set statusline+=%*
+
+        " let g:syntastic_always_populate_loc_list = 1
+        " let g:syntastic_auto_loc_list = 1
+        " let g:syntastic_check_on_open = 1
+        " let g:syntastic_check_on_wq = 0
+    " }}}
+
+    " vimtex {{{
+
+        " latexmk config {{{
+            let g:vimtex_compiler_latexmk = {
+                \ 'backend' : 'jobs',
+                \ 'background' : 1,
+                \ 'build_dir' : '',
+                \ 'callback' : 1,
+                \ 'continuous' : 1,
+                \ 'executable' : 'latexmk',
+                \ 'options' : [
+                \   '-pdf',
+                \   '-verbose',
+                \   '-file-line-error',
+                \   '-synctex=1',
+                \   '-interaction=nonstopmode',
+                \ ],
+                \}
+        " }}}
+
+        " vimtex view {{{
+            " -----zathura for pdf viewer------------
+            let g:vimtex_view_method  = 'zathura'
+        " }}}
+
+        " latexlog {{{
+            " Disable overfull/underfull \hbox and all package warnings
+            let g:vimtex_quickfix_open_on_warning=0
+            let g:vimtex_quickfix_latexlog = {
+                  \ 'overfull' : 0,
+                  \ 'underfull' : 0,
+                  \ 'packages' : {
+                  \   'default' : 0,
+                  \ },
+                  \}
+        " }}}
+
+        " YCM for vimtex {{{
+            if !exists('g:ycm_semantic_triggers')
+              let g:ycm_semantic_triggers = {}
+            endif
+            let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+        " }}}
+
+    " }}}
+
+    " python-mode {{{
+        " let g:pymode_python='python3'           "enable all function in all mode.
+    " }}}
+
+    " ale {{{
+        " let  g: ale_tex_chktex_options  =  "- n 8"  "silence chktex
+    " }}}
+
+    " emmet {{{
+        let g:user_emmet_mode='a'           "enable all function in all mode.
+        let g:user_emmet_install_global = 0 "Enable just for html/css
+        autocmd FileType html,css EmmetInstall
+    " }}}
+
+" }}}
+
+" Key (re)Mappings {{{
+        "-----------------------
+        " Set leader
+        "-----------------------
+        let maplocalleader = ","
+
+        "-----------------------
+        " Set hot key
+        "-----------------------
+        nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>   " 清除并重绘显示屏
+        map <silent> <C-n> :NERDTreeToggle<CR>              " Open NERDTree with Ctrl-n
+        nnoremap <leader>ev :vsplit $MYVIMRC<CR>            " Open vimscript
+        nnoremap <leader>sv :source $MYVIMRC<CR>            " Reload vimscript
+        "-----------------------
+        " Set LaTeX hot key
+        "-----------------------
+        autocmd FileType tex inoremap <buffer> / \
+        autocmd FileType tex inoremap <buffer> \ /
+        autocmd FileType tex inoremap <buffer> <localleader>l $  $<ESC>hi
+        autocmd FileType tex inoremap <buffer> <localleader>m \[<CR>\]<ESC>O
+        "-----------------------
+        " Set python hot key
+        "-----------------------
+        autocmd FileType python inoremap <buffer> ; :
+        autocmd FileType python inoremap <buffer> : ;
+        autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
+" }}}
+
