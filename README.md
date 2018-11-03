@@ -264,6 +264,30 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 
 ### Linux 与 Windows 的时间差校正
 
+Linux和Windows默认的时间管理方式不同，所以双系统发生时间错乱是正常的。
+> Linux默认时间是把BIOS时间当成GMT+0时间，也就是世界标准时，而我国在东八区(GMT+8)，
+> 所以如果你的Linux位置是中国的话你系统显示的时间就是BIOS时间+8小时。
+> 假如现在是早上8点，那么你Linux会显示8点，这时BIOS中的时间是0点。
+> 而当你切换到Windows系统时就会发生时间错乱，因为Windows会认为BIOS时间就是你的本地时间，
+> 结果就是Windows显示时间为0点……而假如你在Windows下同步时间，恢复显示为8点，
+> 这时BIOS时间也会被Windows改写成8点，再次进入Ubuntu时显示时间又变成了8+8=16点……
+
+解决的办法有两个:
+* 一个是让Windows使用Linux的时间管理方式， 就是启用UTC(世界协调时)。
+    > 在Windows下启用UTC。打开运行窗口(快捷键Win+R)，然后输入regedit启动注册表编辑器，
+    > 并找到一下目录位置：
+    >
+    >     HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/TimeZoneInformation/
+    >
+    > 添加一项类型为`REG_DWORD`的键值，命名为`RealTimeIsUniversal`，值为1。
+    > 然后重启后时间即回复正常。
+* 另一个就是让Linux按照Windows的方式管理时间， 就是让Linux禁用(世界协调时)。
+    > 按Ctrl+Alt+T调出终端，输入：
+    >
+    >     sudo timedatectl set-local-rtc true
+    >
+
+这样就可以解决Windows与Linux双系统时间同步问题了。
 
 
 ## Vimperator的配置---`vimperatorrc`说明
