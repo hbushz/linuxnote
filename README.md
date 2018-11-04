@@ -7,60 +7,61 @@
 
 ### Archlinux 包管理器`pacman`的使用说明
 
-1.  同步与升级
-* 安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。 
+1. 同步与升级
+    * 安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。
 
-        pacman -Syy
+                pacman -Syy
 
-* 也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
+    * 也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
 
-        pacman -Syyu
+                pacman -Syyu
 
+2. 安装软件包
+    * 安装或者升级单个软件包，或者一列软件包（包含依赖包），使用如下命令：
 
-2.  安装软件包
-* 安装或者升级单个软件包，或者一列软件包（包含依赖包），使用如下命令： 
+            　　pacman -S package_name1 package_name2
 
-        　　pacman -S package_name1 package_name2
+    * 有时候在不同的软件仓库中，一个软件包有多个版本（比如extra和testing）。你可以选择一个来安装：
 
-* 有时候在不同的软件仓库中，一个软件包有多个版本（比如extra和testing）。你可以选择一个来安装：
+            　　pacman -S extra/package_name
+            　　pacman -S testing/package_name
 
-        　　pacman -S extra/package_name
-        　　pacman -S testing/package_name
+    * 你也可以在一个命令里同步包数据库并且安装一个软件包：
 
-* 你也可以在一个命令里同步包数据库并且安装一个软件包：
+            　　pacman -Sy package_name
 
-        　　pacman -Sy package_name
+    * 安装一个本地包（不从源里）：
 
-* 安装一个本地包（不从源里）： 
+            　　pacman -U /path/to/package/package_name-version.pkg.tar.gz 
 
-        　　pacman -U /path/to/package/package_name-version.pkg.tar.gz 
+    * 下载包而不安装它：
+
+            　　pacman -Sw package_name
 
 3. 卸载软件包
-* 删除单个软件包，保留其全部已经安装的依赖关系 
+    * 删除单个软件包，保留其全部已经安装的依赖关系 
 
-        　　pacman -R package_name
+            　　pacman -R package_name
 
-* 删除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系： 
+    * 删除指定软件包，及其所有没有被其他已安装软件包使用的依赖关系： 
 
-        　　pacman -Rs package_name
+            　　pacman -Rs package_name
 
 4. 包数据库查询
-* 可以使用 -Q 标志搜索和查询本地包数据库。详情参见
+    * 可以使用 -Q 标志搜索和查询本地包数据库。详情参见
 
-        　　pacman -Q --help
-        　　pacman -Qi package_name     #显示查找的包信息
-        　　pacman -Ql package_name     #显示查找的包的安装
-* 可以使用-S 标志搜索和查询远程同步的包数据库。详情参见
+            　　pacman -Q --help
+            　　pacman -Qi package_name     #显示查找的包信息
+            　　pacman -Ql package_name     #显示查找的包的安装
 
-            pacman -Ss package_name
+    * 可以使用-S 标志搜索和查询远程同步的包数据库。详情参见
+
+                pacman -Ss package_name
 
 5. 完全清理包缓存目录(`/var/cache/pacman/pkg`)：
 
         　　pacman -Scc　　　　
 
-7. 下载包而不安装它：
-
-        　　pacman -Sw package_name
 
 ### ArchlinuxCN 镜像使用帮助
 
