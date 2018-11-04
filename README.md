@@ -11,7 +11,7 @@
 * 安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。 
 
         pacman -Syy
-    
+
 * 也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
 
         pacman -Syyu
@@ -246,19 +246,19 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 假设已经有一个Coding的密钥(文件名默认为`id_rsa`与`id_rsa.pub`)，需要需要添加Github的密钥
 1. 生成指定名字的密钥
 
-		ssh-keygen -t rsa -C "YOUREMAIL@163.COM" -f ~/.ssh/github
-	
-	这可以生成名为`github`和`github.pub`的密钥文件
+        ssh-keygen -t rsa -C "YOUREMAIL@163.COM" -f ~/.ssh/github
 
-2. 修改`~/.ssh/config`文件(如果该文件不存在就自己新建一个), 添加以下代码
+    这可以生成名为`github`和`github.pub`的密钥文件
 
-		Host github.com www.github.com  
-		IdentityFile ~/.ssh/github
+3. 修改`~/.ssh/config`文件(如果该文件不存在就自己新建一个), 添加以下代码
 
-		Host coding.net www.coding.net
-		IdentityFile ~/.ssh/id_rsa
+        Host github.com www.github.com
+        IdentityFile ~/.ssh/github
 
-	**注意:** 两条记录间用空行分隔
+        Host coding.net www.coding.net
+        IdentityFile ~/.ssh/id_rsa
+
+    **注意:** 两条记录间用空行分隔
 
 ## Linux 与 Windows 双系统设置
 
@@ -289,6 +289,47 @@ Linux和Windows默认的时间管理方式不同，所以双系统发生时间�
 
 这样就可以解决Windows与Linux双系统时间同步问题了。
 
+### Ubuntu 与 Windows 的默认启动项
+
+当我们安装windows和ubuntu双系统以后，默认启动变成ubuntu了，这对于使用ubuntu作为系统的
+童鞋来说没什么，但对那些经常要进windows的童鞋，每次开机都得按几次向下的箭头，再敲回车，
+非常不方便，有没有方法，让电脑开机时默认启动windows呢？
+
+打开ubuntu系统以后，我们打开超级终端，输入以下命令
+
+    sudo gedit /etc/default/grub
+
+显示如下
+
+    # If you change this file, run 'update-grub' afterwards to update
+    # /boot/grub/grub.cfg.
+    # For full documentation of the options in this file, see:
+    #   info -f grub -n 'Simple configuration'
+
+    GRUB_DEFAULT=0
+    #GRUB_HIDDEN_TIMEOUT=0
+    GRUB_HIDDEN_TIMEOUT_QUIET=true
+    GRUB_TIMEOUT=10
+    GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+    GRUB_CMDLINE_LINUX="locale=zh_CN"
+
+
+`GRUB_DEFAULT`代表的就是启动项的顺序，从数字0开始，依次代表如下启动项
+（这是在我的电脑上，不同的ubuntu版本和windows系统可能会有一些不同）：
+
+    Ubuntu
+    Advanced options for Ubuntu
+    Memory test (memtest86+)
+    Memory test (memtest86+, serial console 115200)
+    Windows 8 (loader) (on /dev/sda1)
+
+windows排第四位（注意，顺序是从0开始计的），所以，把`GRUB_DEFAULT`的值修改为4，
+然后别忘了运行命令：
+
+    sudo update-grub
+
+重启电脑，默认启动的系统就换到windows了。
 
 ## Vimperator的配置---`vimperatorrc`说明
 
