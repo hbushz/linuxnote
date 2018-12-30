@@ -98,6 +98,32 @@ Force Mathematica to use the system version of the zlib library.
         $ cd <INSTALL_DIR>/SystemFiles/Libraries/Linux-x86-64
         $ mv libz.so.1 libz.so.1.old
 
+### Matlab Hidpi
+
+MathWorks suggested the following procedure, which works well for me (R2017b). Quoting from their email:
+Tuning a high-DPI Linux system requires two steps
+
+1. Setting the MATLAB scale factor
+2. Calibrating the system's DPI
+
+The MATLAB scale factor affects MATLAB desktop and the size/position of windows. The system DPI determines the scale and font size of axes and labels. To set the MATLAB scale factor, please use the following MATLAB commands:
+
+        >> s = settings;s.matlab.desktop.DisplayScaleFactor
+        >> s.matlab.desktop.DisplayScaleFactor.PersonalValue = 1.5
+
+To calibrate the system DPI to match the scale facto, please use the following terminal commands :
+
+        % xdpyinfo | grep resolution
+        resolution:    96x96 dots per inch
+        % xrandr --dpi 144
+
+The DPI value chosen should be the resolution found with xdpyinfo multiplied by the MATLAB scale factor that was set. In the example, 96 × 1.5 = 144.
+
+MATLAB must be restarted after Step 2.
+
+我自己只设置了第一步, Matlab就显示比较正常了.
+
+
 ### NetworkManager(无线网络相关)
 
 1. Start NetworkManager:
@@ -145,6 +171,18 @@ Edit `/etc/sddm.conf`, go to the X11 section and change ServerArguments like thi
     ServerArguments=-nolisten tcp -dpi 192
 
 to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问题)
+
+### Linux中的fcitx设置
+
+当安装好`fcitx`程序以后, 如果无法在`WPS`这种类型的程序中启用输入法,
+则需要配置文件`~/.xprofile`, 在其中加入
+
+    export XIM="fcitx"
+    export XIM_PROGRAM="fcitx"
+    export XMODIFIERS="@im=fcitx"
+    export GTK_IM_MODULE="fcitx"
+    export QT_IM_MODULE="fcitx"
+
 
 ## Linux中TeXLive的安装小记
 
@@ -260,6 +298,18 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
         IdentityFile ~/.ssh/id_rsa
 
     **注意:** 两条记录间用空行分隔
+
+## VSCode 使用说明书
+
+1. 格式化代码
+
+The code formatting is available in VS Code through the following shortcuts:
+
+        On Windows Shift + Alt + F
+        On Mac Shift + Option + F
+        On Ubuntu Ctrl + Shift + I
+
+Alternatively, you can find the shortcut, as well as other shortcuts, through the search functionality provided in the editor with Ctrl +Shift+ P (or Command + Shift + P on Mac), and then searching for format document.
 
 ## Linux 与 Windows 双系统设置
 
