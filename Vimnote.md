@@ -127,8 +127,24 @@ Vim替换命令的基本语法是
         ```
     - Alternations  
         Using `\|` you can combine several expressions into one which
-        matches any of its components.
+        matches any of its components. The first one matched will be used
+        ```
+        s:\(Date:\|Subject:\)\(\s.*\):\1 \u\2:g
+        ```
+        The thing to remember about Vim alternation that it is not greedy.
+        It won't search for the longest possible match, it will use the
+        first that matched. That means that the order of the items in the
+        alternation is important.
+    - Regexp Operator Precedence  
+        As in arithmetic expressions, regular expressions are executed in
+        a certain order of precedence. Here the table of precedence,
+        from highest to lowest
 
+|    Precedence | Regexp        | Description |
+| ------------- |:-------------:| -----------:|
+| col 3 is      | right-aligned    | $1600       |
+| col 2 is      | centered      |   $12       |
+| zebra stripes | are neat      |    $1       |
 
 ## Vim标记(mark)
 
