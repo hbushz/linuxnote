@@ -8,6 +8,7 @@ Vim替换命令的基本语法是
 
     :[range]s[ubstitute]/{pattern}/{string}/[flags]
     :[range]s[ubstitute]:{pattern}:{string}:[flags]
+    :[range]s[ubstitute]={pattern}={string}=[flags]
 
 其中各字段的意思是
 * `flags` 表示标志位, 常用的包括
@@ -139,12 +140,13 @@ Vim替换命令的基本语法是
         As in arithmetic expressions, regular expressions are executed in
         a certain order of precedence. Here the table of precedence,
         from highest to lowest
+        + `\(\)`                Precedence 1        grouping
+        + `\=, \+, *, \{n-m}`   Precedence 2        quantifiers
+        + `abc\t\.\w`           Precedence 3        not containing quantifiers or grouping operators
+        + `\|`                  Precedence 4        alternation
 
-|    Precedence | Regexp        | Description |
-| ------------- |:-------------:| -----------:|
-| col 3 is      | right-aligned    | $1600       |
-| col 2 is      | centered      |   $12       |
-| zebra stripes | are neat      |    $1       |
+举例
+
 
 ## Vim标记(mark)
 
