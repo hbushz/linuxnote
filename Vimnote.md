@@ -148,6 +148,20 @@ Vim替换命令的基本语法是
 举例
 
 
+## Vim全局命令(global command)
+
+全局命令`:g`功能非常强大, 当想要在整个文件中对匹配的行或不匹配的行进行一些
+操作时, 应该第一时间想到用这个命令
+
+    :[range]g[lobal][!]/{pattern}/{command}
+
+Execute the Ex command (default `print`) on the lines within `range` where
+`pattern` matches. If `pattern` is preceded with a `!` -- only where match
+does not occur. 各字段的意思是
+* `[range]` 指定文本行范围, 默认文档全部行. 常用的标识符详见`substitute`的
+    `[range]`
+* `[pattern]` 搜索表达式. 常用的标识符详见`substitute`的`[pattern]`
+
 ## Vim标记(mark)
 
 Vim允许你在文本中放置自定义的标记。
