@@ -154,6 +154,12 @@ Vim替换命令的基本语法是
 操作时, 应该第一时间想到用这个命令
 
     :[range]g[lobal][!]/{pattern}/{command}
+    :[range]g[lobal][!]/pattern1/,/pattern2/{command}
+
+The global commands work by first scaning through the `range` of the lines
+and marking each line where a match occurs. In a second scan the `command`
+is executed for each marked line with its line number prepended. If a line
+is changed or deleted its mark disappears.
 
 Execute the Ex command (default `print`) on the lines within `range` where
 `pattern` matches. If `pattern` is preceded with a `!` -- only where match
@@ -161,6 +167,30 @@ does not occur. 各字段的意思是
 * `[range]` 指定文本行范围, 默认文档全部行. 常用的标识符详见`substitute`的
     `[range]`
 * `[pattern]` 搜索表达式. 常用的标识符详见`substitute`的`[pattern]`
+* `[command]` Ex command  
+    Ex commands are all commands you are entering on
+    the Vim command line like
+    - `:co[py]`         复制
+    - `:t`              等价于`:copy`
+    - `:m[ove]`         移动
+    - `:d[elete]`       删除
+    - `:w[rite]`        写入
+    - `:s[ubstitute]`   替换
+
+    Non-Ex commands (normal mode commands) can be alse executed via
+    ```
+    :normal non-ex command
+    ```
+
+### Examples
+
+* `:g/test/d`   删除所有带*test*的行
+* `:g!/test/d`  保留所有带*test*的行
+* `:g/^$/d`     删除所有空行
+* `:g/^/m 0`    反转文件中的每一行
+* `:g/^/m 0`    反转文件中的每一行
+* `:g/^/y A`    将所有行复制到寄存器*A*
+* `:g/hello/,/world/d`   删除*hello*到*world*之间的行(含)
 
 ## Vim标记(mark)
 
