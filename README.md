@@ -384,6 +384,8 @@ windows排第四位（注意，顺序是从0开始计的），所以，把`GRUB_
 
 ## Vimperator的配置---`vimperatorrc`说明
 
+The vimperator is out date now.
+
 ### 如何改变难看的配色?
 
 Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorscheme*为例)
