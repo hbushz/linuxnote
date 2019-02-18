@@ -29,7 +29,7 @@ Vim替换命令的基本语法是
     - `.` the current line. `1,.`表示从第一行到当前行,
     - `$` the last line in the file. `.,$`表示从当前行到最后一行
     - `%` the whole file. The same as `1,$`
-    - `backquote t` the position of mark `t`
+    - \`t the position of mark `t`
     - `/pattern/` the next line where text *pattern* matches
     - `?pattern?` the previous line where text *pattern* matches
     - `\/` the next line where the previously used search pattern matches
@@ -124,7 +124,7 @@ Vim替换命令的基本语法是
     Now the full  to correct non-capital words at the beginning of the
     sentences looks like
         ```
-        s:\([.!?]\)\s\+\([a-z\):\1 \u\2:g
+        s:\([.!?]\)\s\+\([a-z]\):\1 \u\2:g
         ```
     - Alternations  
         Using `\|` you can combine several expressions into one which
