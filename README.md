@@ -382,6 +382,18 @@ windows排第四位（注意，顺序是从0开始计的），所以，把`GRUB_
 
 重启电脑，默认启动的系统就换到windows了。
 
+## 如何将`visudo`编辑器从`nano`更改为`vim`?
+
+**问题描述:**
+在Debain系统中, 当我使用visudo时，它总是用nano编辑器打开它。
+如何将编辑器更改为vim？
+
+**最佳方法:**
+键入以下命令
+
+    sudo update-alternatives --config editor
+
+
 ## Vimperator的配置---`vimperatorrc`说明
 
 The vimperator is out date now.
