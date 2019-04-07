@@ -2,7 +2,6 @@
 
 这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
 
-
 ## Arch Linux相关
 
 ### Archlinux 包管理器`pacman`的使用说明
@@ -60,15 +59,16 @@
 
 5. 完全清理包缓存目录(`/var/cache/pacman/pkg`)：
 
-        　　pacman -Scc　　　　
-
+        　　pacman -Scc
 
 ### ArchlinuxCN 镜像使用帮助
 
 Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。
 包含中文用户常用软件、工具、字体/美化包等。
-+ [官方仓库](http://repo.archlinuxcn.org)
-+ [清华镜像](https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/)
+
+* [官方仓库](http://repo.archlinuxcn.org)
+
+* [清华镜像](https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/)
 
 使用方法：在 `/etc/pacman.conf` 文件末尾添加以下两行：
 
@@ -122,7 +122,6 @@ The DPI value chosen should be the resolution found with xdpyinfo multiplied by 
 MATLAB must be restarted after Step 2.
 
 我自己只设置了第一步, Matlab就显示比较正常了.
-
 
 ### NetworkManager(无线网络相关)
 
@@ -183,28 +182,41 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
     export GTK_IM_MODULE="fcitx"
     export QT_IM_MODULE="fcitx"
 
-
 ## Linux中TeXLive的安装小记
 
-1. 首先在CTAN国内的镜像上下载TeXLive光盘镜像文件`texlive2018.iso`，推荐：
+1. 首先在CTAN国内的镜像上下载TeXLive光盘镜像文件`texlive2018.iso`，推荐
+
     * [清华大学开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/)
+
     * [中国科学技术大学开源镜像站](http://mirrors.ustc.edu.cn/CTAN/systems/texlive/Images/)
+
 2. 为了使用图形化安装界面，需要安装`perl`的`tk`组件
         sudo pacman -S perl-tk
+
 3. 加载镜像文件
+
         sudo mount -o loop texlive2018.iso /mnt
+
 4. 启动图形安装界面
+
         sudo /mnt/install-tl -gui
+
 5. 安装选项基本都是默认，只有最后两项
+
     * 一定要创建指向系统目录的符号链接，选择默认路径即可
+
     * 自动更新选项选择**否**
-6. 点击`安装TeX Live`，进行安装。安装持续时间大约10多分钟，直到出现`完成`按扭，点击完成。
-   然后卸载镜像文件
+
+6. 点击`安装TeX Live`，进行安装。安装持续时间大约10多分钟，直到出现`完成`按扭，点击完成。 然后卸载镜像文件
+
         sudo umount /mnt
-7. 配置合适的CTAN源可以加快宏包更新的网速，以中科大的源为例：
+
+7. 配置合适的CTAN源可以加快宏包更新的网速，以中科大的源为例
+
         sudo tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
-   之后可以利用tlmgr进行网络更新。CTAN 上的包更新很频繁，所以即便是最新版的texlive2018，
-   其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
+
+   之后可以利用tlmgr进行网络更新。CTAN 上的包更新很频繁，所以即便是最新版的texlive2018， 其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
+
         sudo tlmgr update --self --all
 
 ## Linux中GVim的配置---`vimrc`说明
@@ -215,47 +227,45 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 
 使用插件[`vimtex`](https://github.com/lervag/vimtex/), 在`vimrc`文件中加入
 
-		Plugin 'lervag/vimtex'
-		"---------------------
-		" set vimtex
-		" --------------------
-		" Set the viewer method
-		let g:vimtex_view_general_viewer = 'zathura'
-		let g:vimtex_view_method = 'zathura'
-		" Customization of the latexmk compiler
-		let g:vimtex_compiler_latexmk = {
-		  \ 'backend' : 'jobs',
-		  \ 'background' : 1,
-		  \ 'build_dir' : '',
-		  \ 'callback' : 1,
-		  \ 'continuous' : 1,
-		  \ 'executable' : 'latexmk',
-		  \ 'options' : [
-		  \   '-pdf',
-		  \   '-verbose',
-		  \   '-file-line-error',
-		  \   '-xelatex',
-		  \   '-synctex=1',
-		  \   '-interaction=nonstopmode',
-		  \ ],
-		  \}
+        Plugin 'lervag/vimtex'
+        "---------------------
+        " set vimtex
+        " --------------------
+        " Set the viewer method
+        let g:vimtex_view_general_viewer = 'zathura'
+        let g:vimtex_view_method = 'zathura'
+        " Customization of the latexmk compiler
+        let g:vimtex_compiler_latexmk = {
+                \ 'backend' : 'jobs',
+                \ 'background' : 1,
+                \ 'build_dir' : '',
+                \ 'callback' : 1,
+                \ 'continuous' : 1,
+                \ 'executable' : 'latexmk',
+                \ 'options' : [
+                \   '-pdf',
+                \   '-verbose',
+                \   '-file-line-error',
+                \   '-xelatex',
+                \   '-synctex=1',
+                \   '-interaction=nonstopmode',
+                \ ],
+                \}
 
 然后在系统中安装好TeXLive就可以实现TeX文档的编辑, 编译, 调试.
-
 
 ### 如何在退出插入模式后屏蔽中文输入法?
 
 在Normal模式下中文输入法简直是噩梦, 若你采用的是小企鹅输入法框架(Fcitx)的话, 最简单有效的屏蔽方式为
 使用插件[`fcitx`](https://github.com/vim-scripts/fcitx.vim). 只要在`vimrc`文件中加入
 
-		Plugin 'vim-scripts/fcitx.vim'
+        Plugin 'vim-scripts/fcitx.vim'
 
 就再也不用担心输入法的切换了.
 
+### 在用vim编辑Markdown文档时, 如何实现实时预览
 
-### 在用vim编辑Markdown文档时, 如何实现实时预览?
-
-请使用插件[`markdown-preview`](https://github.com/iamcco/markdown-preview.vim), 只要在`vimrc`文件中加入	
+请使用插件[`markdown-preview`](https://github.com/iamcco/markdown-preview.vim), 只要在`vimrc`文件中加入
 
         Plugin 'iamcco/markdown-preview.vim'
         let g:mkdp_auto_start = 1
@@ -264,7 +274,7 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 
 ## Git的配置
 
-### Git访问GitHub特别慢, 如何配置socks5代理?
+### Git访问GitHub特别慢, 如何配置socks5代理
 
 可以只对github进行全局代理设置，对国内的仓库不影响
 
@@ -283,13 +293,14 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 ### Git可以使用SSH协议授权, 当你在GitHub和Coding上都有账号时, 如何配置SSH?
 
 假设已经有一个Coding的密钥(文件名默认为`id_rsa`与`id_rsa.pub`)，需要需要添加Github的密钥
+
 1. 生成指定名字的密钥
 
         ssh-keygen -t rsa -C "YOUREMAIL@163.COM" -f ~/.ssh/github
 
     这可以生成名为`github`和`github.pub`的密钥文件
 
-3. 修改`~/.ssh/config`文件(如果该文件不存在就自己新建一个), 添加以下代码
+2. 修改`~/.ssh/config`文件(如果该文件不存在就自己新建一个), 添加以下代码
 
         Host github.com www.github.com
         IdentityFile ~/.ssh/github
@@ -324,7 +335,9 @@ Linux和Windows默认的时间管理方式不同，所以双系统发生时间�
 > 这时BIOS时间也会被Windows改写成8点，再次进入Ubuntu时显示时间又变成了8+8=16点……
 
 解决的办法有两个:
+
 * 一个是让Windows使用Linux的时间管理方式， 就是启用UTC(世界协调时)。
+
     > 在Windows下启用UTC。打开运行窗口(快捷键Win+R)，然后输入regedit启动注册表编辑器，
     > 并找到一下目录位置：
     >
@@ -332,7 +345,9 @@ Linux和Windows默认的时间管理方式不同，所以双系统发生时间�
     >
     > 添加一项类型为`REG_DWORD`的键值，命名为`RealTimeIsUniversal`，值为1。
     > 然后重启后时间即回复正常。
+
 * 另一个就是让Linux按照Windows的方式管理时间， 就是让Linux禁用(世界协调时)。
+
     > 按Ctrl+Alt+T调出终端，输入：
     >
     >     sudo timedatectl set-local-rtc true
@@ -393,17 +408,58 @@ windows排第四位（注意，顺序是从0开始计的），所以，把`GRUB_
 
     sudo update-alternatives --config editor
 
+## 如何改变时区
+
+We can change timezone in two ways
+
+1. Using `/etc/localtime`
+
+2. Using `timedatectl` command
+
+### Method 1 (Traditional method)
+
+* Check the current time zone using the `date` command
+* The `/usr/share/zoneinfo/` directory contains all the timezones. Beneath that
+    you can find some directories specific to country or zone. Find the file
+    you want. For example:
+
+        /usr/share/zoneinfo/Asia/Shanghai
+
+* Check the current symbolic link `/etc/localtime` using the following command
+
+        ls -al /etc/localtime
+
+* Create a new link with the desired timezone. For example:
+
+        ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+### Method 2 (Novel method)
+
+* Using the `timedatectl` command to list all time zone
+
+        timedatectl list-timezones
+
+*  the `grep` command to filter the output. For example
+
+        timedatectl list-timezones | grep -i shanghai
+
+* Set the timezone using the following command
+
+        timedatectl set-timezone Asia/Shanghai
 
 ## Vimperator的配置---`vimperatorrc`说明
 
 The vimperator is out date now.
 
-### 如何改变难看的配色?
+### 如何改变难看的配色
 
 Vimperator是支持使用colorscheme的,具体方法(以使用*indigo colorscheme*为例)
+
 1. 将colorscheme配置文件`indigo.vimp`放置于`~/.vimperator/colors/`文件夹内
+
 2. 在`~/.vimperatorrc`文件中加入`colorscheme indigo`
 
 在[vimperator-colors](https://github.com/vimpr/vimperator-colors)仓库中可以找到很多colorscheme.
 
 ## Mac OS中MacVim的配置---`macvimrc`说明
+
