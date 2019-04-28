@@ -447,6 +447,14 @@ We can change timezone in two ways
 
         timedatectl set-timezone Asia/Shanghai
 
+## Monitoring CPUTemperature
+
+    watch -n 2 sensors
+
+* where `watch` guarantees that the reading will be updated every 2 seconds
+
+* where `sensors` sensors is used to show the current readings of all sensor chips
+
 ## Vimperator的配置---`vimperatorrc`说明
 
 The vimperator is out date now.
