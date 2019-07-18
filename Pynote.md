@@ -1,6 +1,6 @@
 # Python Note
 
-这里记录了对于我在Linux世界里一些非常重要但又容易忘记的小问题.
+这里记录了Python使用中一些非常重要但又容易忘记的小问题.
 
 ## Python包管理工具pip
 
@@ -53,7 +53,16 @@
     format = columns
     ```
 
+## Python调用Shell Scripts
 
+### 通过`subprocess`模块实现
 
+    ```
+    import subprocess
+
+    res = subprocess.check_output(["lsmod"])
+    for line in res.splitlines():
+        print(line.decode("utf_8"))
+    ```
 
 
