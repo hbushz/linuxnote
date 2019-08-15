@@ -4,6 +4,8 @@
 
 ## Python包管理工具pip
 
+---
+
 ### 常用命令
 
 1. 搜索包: `pip search 关键字`
@@ -34,30 +36,35 @@
 
 ### 配置镜像源
 
-* 中科大镜像 https://mirrors.ustc.edu.cn/pypi/
+* [中科大镜像](https://mirrors.ustc.edu.cn/pypi/)
 
-* 清华镜像 https://pypi.tuna.tsinghua.edu.cn/simple
+* [清华镜像](https://pypi.tuna.tsinghua.edu.cn/simple)
 
-    1. 临时使用
+1. 临时使用
 
-    ```
+    ```bash
     pip install -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
     ```
 
-    1. 设为默认
+1. 设为默认
 
     修改`pip.conf`的配置文件
-    ```
+
+    ```python
     [global]
     index-url = https://mirrors.ustc.edu.cn/pypi/web/simple
     format = columns
     ```
 
-## Python调用Shell Scripts
+## Python与系统交互
 
-### 通过`subprocess`模块实现
+---
 
-    ```
+### Python调用Shell Scripts
+
+* 通过`subprocess`模块实现
+
+    ```python
     import subprocess
 
     res = subprocess.check_output(["lsmod"])
@@ -65,4 +72,14 @@
         print(line.decode("utf_8"))
     ```
 
+## Pandas
 
+---
+
+### The difference bewteen `loc` and `iloc` of Pandas
+
+Here's a recap of the two methods:
+
+* `loc` gets rows (or columns) with particular labels from the index.
+
+* `iloc` gets rows (or columns) at particular positions in the index (so it only takes integers).
