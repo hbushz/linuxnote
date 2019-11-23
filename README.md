@@ -211,13 +211,21 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 
         sudo umount /mnt
 
-7. 配置合适的CTAN源可以加快宏包更新的网速，以中科大的源为例
+7. 配置合适的CTAN源可以加快宏包更新的网速，以清华源为例
 
-        sudo tlmgr option repository http://mirrors.ustc.edu.cn/CTAN/systems/texlive/tlnet
+        sudo tlmgr option repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
 
-   之后可以利用tlmgr进行网络更新。CTAN 上的包更新很频繁，所以即便是最新版的texlive2018， 其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
+   之后可以利用tlmgr进行网络更新。临时切换源
+
+        sudo tlmgr update --sefl --all --repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+
+   CTAN 上的包更新很频繁，所以即便是最新版的texlive2018， 其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
 
         sudo tlmgr update --self --all
+
+   临时切换更新源
+
+        sudo tlmgr update --self --all --repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
 
 ## Linux中GVim的配置---`vimrc`说明
 
