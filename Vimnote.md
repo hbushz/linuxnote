@@ -1,6 +1,6 @@
 # Vim Note
 
-Vim是我最喜欢的编辑器，这里记录了一些Vim的小知识。
+Vim是我最喜欢的$\LaTeX$编辑器，这里记录了一些Vim的小知识。
 
 ## Vim替换(substitute)
 

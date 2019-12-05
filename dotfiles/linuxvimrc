@@ -1,0 +1,433 @@
+" Modeline and Notes {{{
+" vim:set et ts=4 sts=4 tw=78 foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
+"                                    _
+"         ___  _ __ ___      __   __(_)_ __ ___
+"        / __|| '_ ` _ \ ____\ \ / /| | '_ ` _ \
+"        \__ \| | | | | |____|\ V / | | | | | | |
+"        |___/|_| |_| |_|      \_/  |_|_| |_| |_|
+"
+" This is the personal .vimrc file of Shuomo.
+"
+" }}}
+
+" Plugin management {{{
+
+    " Specify a directory for plugins
+    " - Avoid using standard Vim directory names like 'plugin'
+    call plug#begin('~/.vim/plugged')
+
+    " Make sure you use single quotes
+    " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+
+    " Make a universal set of defaults
+    " Plug 'tpope/vim-sensible'
+
+    " Chinese help document
+    Plug 'yianwillis/vimcdoc'           " 中文帮助
+
+    " Comment gcc
+    Plug 'tpope/vim-commentary'         " 注释 gcc
+
+    " Delete change and add surroundings in pairs
+    Plug 'tpope/vim-surround'           " 修改删除添加成对的括号
+
+    " Auto-completetion for brackets
+    Plug 'Raimondi/delimitMate'
+
+    " Remaps . in a way that plugins can tap into it.
+    Plug 'tpope/vim-repeat'             " 将 . 扩展到插件的重复操作
+
+    " Vim sugar for the UNIX shell commands: SudoWrite
+    Plug 'tpope/vim-eunuch'             " 方便执行shell命令
+
+    " True color version of solarized
+    Plug 'lifepillar/vim-solarized8'
+    " Plug 'tomasr/molokai'               " Color scheme
+
+    " Lean & mean status/tabline for vim that's light as air
+    " Plug 'bling/vim-airline'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    " Keep and restore fcitx state when re-entering insert mode
+    Plug 'lilydjwg/fcitx.vim'           " 自动切换输入法
+
+    " Git wrapper
+    Plug 'tpope/vim-fugitive'
+
+    " A tree explorer plugin for vim.
+    Plug 'scrooloose/nerdtree'
+
+    " Syntax checking hacks for vim
+    " Plug 'vim-syntastic/syntastic'
+    Plug 'w0rp/ale'
+
+    " a command-line fuzzy finder
+    Plug '/bin/fzf'
+    Plug 'junegunn/fzf.vim'
+
+    " A code-completion engine for vim
+    Plug 'Valloric/YouCompleteMe'
+
+    " A modern vim plugin for editing LaTeX files
+    Plug 'lervag/vimtex', {'for': 'tex'}
+
+    " Markdown vim mode
+    Plug 'godlygeek/tabular'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'mzlogin/vim-markdown-toc'
+    Plug 'iamcco/mathjax-support-for-mkdp'
+    Plug 'iamcco/markdown-preview.vim'
+    " Plug 'suan/vim-instant-markdown', {'for': 'md'}
+
+    " Python mode
+    Plug 'python-mode/python-mode', { 'branch': 'develop' }
+
+    " Initialize plugin system
+    call plug#end()
+" }}}
+
+" General setting {{{
+    "----------------------
+    " Genaral settings
+    "-----------------------
+    set nocompatible            " be iMproved
+    filetype plugin indent on   " Automatically detect file types.
+    syntax enable               " Enable syntax processing
+
+    set history=10000           " Increase the lines of history
+    set tabpagemax=50           " Increase the max tab page
+    set sessionoptions-=options
+    set visualbell
+    " set spell spelllang=en_us
+    "-----------------------
+    " Set J action and backspace action
+    "-----------------------
+    set nojoinspaces            " Prevents inserting two spaces after punctuation on a join (J)
+    set formatoptions+=j        " Delete comment character when joining commented lines
+    set backspace=indent,eol,start  " Backspace for dummies
+    "-----------------------
+    " Indentation, spaces and tabs
+    "-----------------------
+    set autoindent              " Indent at the same level of the previous line
+    set smartindent             " Smart indent uses the code syntax to align
+    set shiftwidth=4            " Set the number of spaces to display for a shift operation (such as << or >>)
+
+    set tabstop=4               " Set the number of spaces to display for a tab
+    set softtabstop=4           " Set the number of spaces in tab when editing
+    set smarttab
+    set expandtab               " Use spaces instead of tab (Tabs are spaces, not tabs)
+    "-----------------------
+    " Set searching
+    "-----------------------
+    set hlsearch                " Highlight search terms
+    set incsearch               " Find as you type search
+    set wrapscan                " Searches wrap around the end of the file
+    set scrolloff=1             " 使下一个查找对象自动垂直居中
+    set sidescrolloff=5         " 使下一个查找对象自动水平居中
+    "-----------------------
+    " Set time out length
+    "-----------------------
+    set timeout
+    set timeoutlen=2000
+    set ttimeout
+    set ttimeoutlen=50
+    "-----------------------
+    " Set view
+    "-----------------------
+    set number                  " Show line number
+    set textwidth=80            " Wrap text when it crosses the max line width
+    " set cursorline              " Highlight current line
+    " set cursorcolumn              " Highlight current column
+    " set virtualedit=onemore     " Allow for cursor beyond last character
+    set nowrap                  " Do not wrap long lines
+    set showmatch               " Show matching brackets/parenthesis
+    set list
+    set listchars=tab:>\ ,trail:•,extends:>,precedes:<,nbsp:+
+                                " Highlight problematic whitespace
+    set splitright              " Puts new vsplit windows to the right of the current
+    set splitbelow              " Puts new split windows to the bottom of the current
+    set viewoptions=folds,options,cursor,unix,slash
+                                " Better Unix / Windows compatibility
+    "-----------------------
+    " Set statusline
+    "-----------------------
+    set laststatus=2
+    set showcmd                 " Show partial commands in status line and
+    set wildmenu                " Show list instead of just completing
+    " set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+    "----------------------
+    " Set encoding and file read and write
+    "----------------------
+    set encoding=utf-8          " Set utf-8 encoding
+    set fileencoding=utf-8      " Set new file default encoding
+    set fileencodings=ucs-bom,utf-8,cp936 "设置文件读取尝编码顺序
+
+    set fileformats+=mac
+    set autoread                " Set autoread when a file is changed outside
+    set autowrite               " Write the contents of the file, if it has been modified
+    "----------------------
+    " Set complete action
+    "-----------------------
+    set complete-=i
+    set completeopt-=preview    " Optimize auto complete
+    set completeopt+=longest    " Optimize auto complete
+    "----------------------
+    " Set mouse
+    "----------------------
+    if has('mouse')
+        set mouse=a             " Automatically enable mouse usage
+        set mousehide           " Hide the mouse cursor while typing
+    endif
+    "----------------------
+    " Set input method
+    "----------------------
+    " set noimd
+    " set iminsert=2
+    " set imsearch=1
+    "-------------------------------
+    " Set GUI Display
+    "-------------------------------
+    if has('gui_running')
+        set lines=55
+        set columns=90
+        set colorcolumn=80
+
+        "-----------------------
+        " GUI menubar toolbar
+        "-----------------------
+        set guioptions-=m
+        set guioptions-=T
+        set guioptions-=r
+        set guioptions-=L
+        set guioptions-=b
+
+        set background=dark
+        colorscheme solarized8_flat
+
+        if has('gui_gtk')
+            set guifont=DejaVu\ Sans\ Mono\ 13
+            set guifontwide=Microsoft\ YaHei\ Mono\ 12
+        else
+            set guifont=DejaVu\ Sans\ Mono:h13
+            set guifontwide=Microsoft\ YaHei\ Mono:h12
+        endif
+        " set transparency=5		"Set windows transparency
+    endif
+
+    " New feature {{{
+            "----------------------
+            " Set clipboard
+            "----------------------
+            " if has('clipboard')
+            "     if has('unnamedplus')  " When possible use + register for copy-paste
+            "         set clipboard=unnamed,unnamedplus
+            "     else         " On mac and Windows, use * register for copy-paste
+            "         set clipboard=unnamed
+            "     endif
+            " endif
+
+            "----------------------
+            " Set backup
+            "----------------------
+            set backup                  " Backups are nice ...
+            if has('persistent_undo')
+                set undofile                " So is persistent undo ...
+                set undolevels=1000         " Maximum number of changes that can be undone
+                set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+            endif
+            "---------------------------------------------
+            " Always switch to the current file directory
+            "---------------------------------------------
+            " autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+            "--------------------------------------------------------------
+            " Restore cursor to file position in previous editing session
+            "--------------------------------------------------------------
+            function! ResCur()
+                if line("'\"") <= line("$")
+                    silent! normal! g`"
+                    return 1
+                endif
+            endfunction
+
+            augroup resCur
+                autocmd!
+                autocmd BufWinEnter * call ResCur()
+            augroup END
+    " }}}
+
+    " Initialize directories {{{
+            function! InitializeDirectories()
+                let parent = $HOME
+                let prefix = 'vim'
+                let dir_list = {
+                            \ 'backup': 'backupdir',
+                            \ 'views': 'viewdir',
+                            \ 'swap': 'directory' }
+
+                if has('persistent_undo')
+                    let dir_list['undo'] = 'undodir'
+                endif
+
+                " To specify a directory in which to place the vimbackup,
+                " vimviews, vimundo, and vimswap files/directories
+                let common_dir = parent . '/.' . prefix
+
+                for [dirname, settingname] in items(dir_list)
+                    let directory = common_dir . dirname . '/'
+                    if exists("*mkdir")
+                        if !isdirectory(directory)
+                            call mkdir(directory)
+                        endif
+                    endif
+                    if !isdirectory(directory)
+                        echo "Warning: Unable to create backup directory: " . directory
+                        echo "Try: mkdir -p " . directory
+                    else
+                        let directory = substitute(directory, " ", "\\\\ ", "g")
+                        exec "set " . settingname . "=" . directory
+                    endif
+                endfor
+            endfunction
+            call InitializeDirectories()
+    " }}}
+" }}}
+
+" Plugin Config {{{
+
+    " molokai {{{
+        " let g:rehash256 = 1
+    " }}}
+
+    " vim-airline {{{
+        let g:airline_solarized_bg='dark'
+        " let g:airline_powerline_fonts=1
+    " }}}
+
+    " YouCompleteme {{{
+        " let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+        " let g:ycm_collect_identifiers_from_tags_files=1 " 开启 YCM 基于标签引擎
+        " let g:ycm_min_num_of_chars_for_completion=2     " 从第2个键入字符就开始罗列匹配项
+        " let g:ycm_seed_identifiers_with_syntax=1        " 语法关键字补全
+        " " Enable omni completion.
+        " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+        " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+        " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+        " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+        " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+        " autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+        " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    " }}}
+
+    " syntastic {{{
+        " let g:syntastic_mode_map = {
+        "     \ "mode": "active",
+        "     \ "active_filetypes": ["python", "vim"],
+        "     \ "passive_filetypes": ["tex"] }
+    " }}}
+
+    " ale {{{
+        " let g:ale_linters = {
+        "     \ 'tex': [] }
+        " let g:ale_linters = {
+        "     \ 'python': [] }
+    " }}}
+
+    " vimtex {{{
+
+        " latexmk config {{{
+            let g:vimtex_compiler_latexmk = {
+                \ 'backend' : 'jobs',
+                \ 'background' : 1,
+                \ 'build_dir' : '',
+                \ 'callback' : 1,
+                \ 'continuous' : 1,
+                \ 'executable' : 'latexmk',
+                \ 'options' : [
+                \   '-pdf',
+                \   '-verbose',
+                \   '-file-line-error',
+                \   '-synctex=1',
+                \   '-interaction=nonstopmode',
+                \ ],
+                \}
+        " }}}
+
+        " vimtex view {{{
+            " -----zathura for pdf viewer------------
+            let g:vimtex_view_method  = 'zathura'
+        " }}}
+
+        " latexlog {{{
+            " Disable overfull/underfull \hbox and all package warnings
+            let g:vimtex_quickfix_open_on_warning=0
+            let g:vimtex_quickfix_latexlog = {
+                  \ 'overfull' : 0,
+                  \ 'underfull' : 0,
+                  \ 'packages' : {
+                  \   'default' : 0,
+                  \ },
+                  \}
+        " }}}
+
+        " YCM for vimtex {{{
+            if !exists('g:ycm_semantic_triggers')
+              let g:ycm_semantic_triggers = {}
+            endif
+            let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+        " }}}
+
+    " }}}
+
+    " markdown {{{
+        let g:vim_markdown_folding_level = 2
+        let g:vim_markdown_folding_disabled = 1
+
+        let g:mkdp_path_to_chrome = "/bin/google-chrome-stable"
+        let g:mkdp_auto_start = 0
+    " }}}
+
+    " python mode {{{
+        let g:pymode_python = 'python3'
+        " let g:pymode_lint = 0
+        let g:pymode_lint_checkers = ['pep8']
+        let g:pymode_lint_ignore = ["E501", "W",]
+        " let g:pymode_trim_whitespaces = 1
+    " }}}
+
+" }}}
+
+" Key (re)Mappings {{{
+    "-----------------------
+    " Set leader
+    "-----------------------
+    let maplocalleader = ","
+
+    "-----------------------
+    " Set hot key
+    "-----------------------
+    nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>   " Clear and redraw with Ctrl-l
+    map <silent> <C-n> :NERDTreeToggle<CR>              " Open NERDTree with Ctrl-n
+    " Substitute hotkey
+    " nnoremap ;; :%s:::g<Left><Left><Left>
+    " Substitute hotkey with confirm
+    " nnoremap ;' :%s:::gc<Left><Left><Left><Left>
+    nnoremap <leader>ev :vsplit $MYVIMRC<CR>            " Open vimscript
+    nnoremap <leader>sv :source $MYVIMRC<CR>            " Reload vimscript
+    "-----------------------
+    " Set LaTeX hot key
+    "-----------------------
+    autocmd FileType tex setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType tex inoremap <buffer> / \
+    autocmd FileType tex inoremap <buffer> \ /
+    autocmd FileType tex inoremap <buffer> <localleader>l $  $<ESC>hi
+    autocmd FileType tex inoremap <buffer> <localleader>m \begin{equation}<CR>\end{equation}<ESC>O
+    "-----------------------
+    " Set python hot key
+    "-----------------------
+    autocmd FileType python inoremap <buffer> ; :
+    autocmd FileType python inoremap <buffer> : ;
+    autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
+" }}}
+
