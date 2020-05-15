@@ -1,0 +1,4 @@
+# Remap CapsLock as Ctrl
+
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+
