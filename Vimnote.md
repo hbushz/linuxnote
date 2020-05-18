@@ -2,6 +2,16 @@
 
 Vim是我最喜欢的$\LaTeX$编辑器，这里记录了一些Vim的小知识。
 
+## Vim的buffer, window与tab
+
+### Buffer(缓冲区)
+
+* `ls` 会列出所有被载入到内存的缓冲区的列表
+
+## Vim标记(mark)
+
+Vim允许你在文本中放置自定义的标记。
+
 ## Vim替换(substitute)
 
 Vim替换命令的基本语法是
@@ -191,10 +201,6 @@ does not occur. 各字段的意思是
 * `:g/^/m 0`    反转文件中的每一行
 * `:g/^/y A`    将所有行复制到寄存器*A*
 * `:g/hello/,/world/d`   删除*hello*到*world*之间的行(含)
-
-## Vim标记(mark)
-
-Vim允许你在文本中放置自定义的标记。
 
 ## Vim常用操作点滴
 
