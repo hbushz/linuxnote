@@ -33,7 +33,6 @@ Vim替换命令的基本语法是
     - `I` 不忽略`pattern`的大小写
     - `n` 不让Vim执行替换操作, 而只是统计和显示本次`substitute`命令匹配的个数
     - `&` 用于指示Vim重用上一次`substitute`命令所用过的标志位
-
 * `range` 表示搜索范围, 默认表示当前行. 常用的标识符
     - `number` an absolute line number. `1,10`表示第1行到第10行
     - `.` the current line. `1,.`表示从第一行到当前行,
@@ -47,14 +46,24 @@ Vim替换命令的基本语法是
     - `+`, `-` Each may be followed by `+` or `-` and an optional number
       (default 1). `/begin/+,/end/-` 表示从*begin*到*end*之间的所有行,
       但不包含*begin*与*end*所在的行
+
 * `pattern` 搜索字符串, 支持正则表达式, 详述如下
+
+    - 搜索模式
+        + `\M` nomagic模式 字符倾向于表示字符本身, 仅`^`与`$`具有特殊含义
+        + `\m` magic模式(缺省) 自动为一些字符赋予特殊含义, 例如: `.`, `*`, `[]`.
+        但`+`, `?`, `()`, `{}`还需要转义才具有特殊含义
+        + `\v` very magic模式 所有ASCII字符中, 除了数字(0-9), 大小写字母(A-Za-z),
+        和下划线(_)外, 都有特殊含义. 适用于大量使用正则表达式的情况
+        + `\V` very nomagic模式. 大多数字符都表示自身, 只有反斜杠`\`和表示模式起止
+        的分隔符`/`或`?`
     - Anchors(定界符)
         + `\<` `\>` word boundary symbols. `s:\<vi\>:VIM:g`将单词*vi*替换为*VIM*
         + `^` `$` the beginning and the end of the line anchors.
           `s:^vi\>:VIM:g` 匹配行首的*vi*单词,
           `s:\<vi$:VIM:g` 匹配行尾的*vi*单词,
           `s:^vi$:VIM:g` 匹配行内仅有的*vi*单词.
-    - Metacharacters(元字符)  
+    - Metacharacters(元字符)
         The power of regexps is in the use of
         metacharacters. Common Vim metacharacters
         + `.` any character except new line
