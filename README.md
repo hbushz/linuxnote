@@ -271,7 +271,7 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 
    之后可以利用tlmgr进行网络更新。临时切换源
 
-        sudo tlmgr update --sefl --all --repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+        sudo tlmgr update --self --all --repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
 
    CTAN 上的包更新很频繁，所以即便是最新版的texlive2018， 其中也有大量的宏包需要更新（可能包括tlmgr程序本身）
 
