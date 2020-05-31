@@ -1,3 +1,42 @@
+# Use pdflatex
+# $pdf_mode = 1;
+# $pdflatex = "pdflatex --shell-escape -interaction=nonstopmode -synctex=1 %O %S";
+
 # Use xelatex instead of pdflatex
-$pdflatex = 'xelatex -synctex=1 -interaction=nonstopmode --shell-escape %O %S';
-$pdf_mode = 1;
+$pdf_mode = 5;
+$postscript_mode = 0;
+$dvi_mode = 0;
+$xelatex = "xelatex --shell-escape -interaction=nonstopmode -synctex=1 -no-pdf %O %S";
+$xdvipdfmx = "xdvipdfmx -E -o %D %O %S";
+
+# $pdf_update_method = 0;
+$pdf_previewer = 'zathura %O %S';
+
+$bibtex_use = 1.5;
+
+# Custom dependency and function for nomencl package
+add_cus_dep('nlo', 'nls', 0, 'nlo2nls');
+sub nlo2nls {
+  system("makeindex $_[0].nlo -s nomencl.ist -o $_[0].nls -t $_[0].nlg" );
+}
+
+# $cleanup_includes_generated = 1;
+
+push @generated_exts, "cb";
+push @generated_exts, "cb2";
+push @generated_exts, "spl";
+push @generated_exts, "nav";
+push @generated_exts, "snm";
+push @generated_exts, "tdo";
+push @generated_exts, "nmo";
+push @generated_exts, "brf";
+push @generated_exts, "nlg";
+push @generated_exts, "nlo";
+push @generated_exts, "nls";
+push @generated_exts, "auxlock";
+push @generated_exts, "synctex.gz";
+push @generated_exts, "run.xml";
+push @generated_exts, "maf";
+push @generated_exts, "mtc*";
+push @generated_exts, "gnuplot";
+push @generated_exts, "table";
