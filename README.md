@@ -250,6 +250,7 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
 3. 加载镜像文件
 
         sudo mount -o loop texlive2018.iso /mnt
+        sudo mount -t iso9660 -o ro,loop,noauto /your/texlive.iso /mnt
 
 4. 启动图形安装界面
 
@@ -280,6 +281,12 @@ to set DPI to 192.(高DPI可以有效解决4K显示屏下sddm字体较小的问�
    临时切换更新源
 
         sudo tlmgr update --self --all --repository https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/tlnet
+
+8. 删除老版本的`TeX Live`
+
+If you installed `TeX Live` using `install-tl`:
+
+        sudo tlmgr remove --all.
 
 ## Linux中GVim的配置---`vimrc`说明
 
