@@ -115,6 +115,13 @@
 
         　　pacman -Scc
 
+6. Note
+
+Q: Whenever I try to install/uninstall a package pacman takes around 5~10 seconds
+for "fixing hard coded icons" post transaction hook.
+
+A: The package is hardcoder-fixer. Remove if you wish as it is non-critical.
+
 ### ArchlinuxCN 镜像使用帮助
 
 Arch Linux 中文社区仓库 是由 Arch Linux 中文社区驱动的非官方用户仓库。
