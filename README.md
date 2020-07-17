@@ -59,13 +59,19 @@
 ## Arch Linux相关
 
 ### Archlinux 包管理器`pacman`的使用说明
+1. 源的选择
+    * pacman-mirrors 寻找最快镜像源
+
+            sudo pacman-mirrors -c China -m rank -i
+
+    * 其中参数`-c` 指定国家, `-m` 指定排序方式, `-i` 采用交互选择方式
 
 1. 同步与升级
     * 安装和升级软件包前，先让本地的包数据库和远程的软件仓库同步是个好习惯。
 
                 pacman -Syy
 
-    * 也可以使用一句命令同时进行同步软件库并更新系统到最新状态 
+    * 也可以使用一句命令同时进行同步软件库并更新系统到最新状态
 
                 pacman -Syyu
 
