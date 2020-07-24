@@ -1,6 +1,6 @@
-# Vim Note
+# Vim pattern search substitute and global Note
 
-Vim是我最喜欢的$\LaTeX$编辑器，这里记录了一些Vim的小知识。
+Vim是我最喜欢的编辑器，这里记录了Vim的正则表达式查找替换与全局命令
 
 ## Vim替换(substitute)
 
@@ -228,19 +228,4 @@ does not occur. 各字段的意思是
 * `:g/^/m 0`    反转文件中的每一行
 * `:g/^/y A`    将所有行复制到寄存器*A*
 * `:g/hello/,/world/d`   删除*hello*到*world*之间的行(含)
-
-## Vim常用操作点滴
-
-normal模式下`x`删除当前光标下的字符
-normal模式下`X`删除当前光标前一个字符
-
-## Vim的buffer, window与tab
-
-### Buffer(缓冲区)
-
-* `ls` 会列出所有被载入到内存的缓冲区的列表
-
-## Vim标记(mark)
-
-Vim允许你在文本中放置自定义的标记。
 
