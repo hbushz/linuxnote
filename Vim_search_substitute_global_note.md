@@ -87,6 +87,7 @@ Vim替换命令的基本语法是
         + `.` any character except new line
         + `\s` whitespace character
         + `\S` non-whitespace character
+        + `\_s` whitespace or a linebreak.
         + `\d` digit
         + `\D` non-digit
         + `\h` head of word character(a, b,..., z, A, B, ..., Z and _ )

@@ -25,6 +25,14 @@ Vim是我最喜欢的编辑器，这里记录了一些Vim的小知识。
     Ctrl-r / last search term
     ```
 
+## Vim 寄存器
+
+1. 复制一个寄存器到另一个寄存器, 如 register a to register z
+
+    ```vim
+    :let @a = @z
+    ```
+
 ## Vim的buffer, window与tab
 
 ### Buffer(缓冲区)
