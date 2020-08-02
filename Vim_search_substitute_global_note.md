@@ -183,8 +183,39 @@ Vim替换命令的基本语法是
         + `abc\t\.\w`           Precedence 3        not containing quantifiers or grouping operators
         + `\|`                  Precedence 4        alternation
 
-举例
+### 举例
 
+1. 重复上一次替换
+
+    * `:&&` 在当前行执行上次的替换操作, 结合选择模式可以做用于高亮区域
+
+    * `:%&&` 会做用于整个文件, `g&` 为其快捷方式
+
+1. 在替换过程执行算术运算
+
+    ```html
+    <h2> Heading number 1</h2>
+    <h3> Heading number 2</h3>
+    <h4> Heading number 3</h4>
+    ```
+    目标: 将各级标题都减1
+
+    * 构建查找模式 `/\v\<\/?h\zs\d`
+
+    * 使用脚本 `:%s//\=submatch(0)-1/g`
+
+1. 交换两个单词
+
+    ```txt
+    The dog bit the man.
+    ```
+    目标: 交换 *dog* 与 *man*
+
+    * 匹配两个单词 `/\v(<man>|<dog>)`
+
+    * 使用脚本 `:%s//\={"dog":"man", "man":"dog"}[submatch(1)]/g`
+
+    * 另外可以使用 `Abolish` 插件 `:%S/{man, dog}/{dog,man}/g`
 
 ## Vim全局命令(global command)
 
