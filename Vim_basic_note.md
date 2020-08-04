@@ -18,11 +18,20 @@ Vim是我最喜欢的编辑器，这里记录了一些Vim的小知识。
 1. `Ctrl-r` vim paste in command mode / search mode
 
     ```vim
-    Ctrl-r " contents in register noname register
-    Ctrl-r a contents in register a
-    Ctrl-r + system clipboard
-    Ctrl-r % current filename
-    Ctrl-r / last search term
+    Ctrl-r " " contents in register noname register
+    Ctrl-r a " contents in register a
+    Ctrl-r + " system clipboard
+    Ctrl-r % " current filename
+    Ctrl-r / " last search term
+    ```
+
+1. The `~` character can be used to  switch the case of  the character under the
+    cursor. Actually, it can act like an operator
+
+    ```vim
+    g~w " to switch the case of next word
+    g~} " to switch the case of the next paragraph
+    g~~ " to switch the case of the entire line
     ```
 
 ## Vim 寄存器
