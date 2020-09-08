@@ -70,7 +70,8 @@ Vim是我最喜欢的编辑器，这里记录了一些Vim的小知识。
 1. 复制一个寄存器到另一个寄存器, 如 register a to register z
 
     ```vim
-    :let @a = @z
+    :let @a = @z ` register a to register z
+    :let @/ = "" ` 置空查找寄存器
     ```
 
 ## Vim的buffer, window与tab
