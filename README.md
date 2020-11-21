@@ -91,9 +91,14 @@
 
     * 安装一个本地包（不从源里）：
 
-            　　pacman -U /path/to/package/package_name-version.pkg.tar.gz 
+            　　pacman -U /path/to/package/package_name-version.pkg.tar.gz
+                pacman -U http://www.example.com/repo/example.pkg.tar.xz
 
     * 下载包而不安装它：
+
+            　　pacman -Sw package_name
+
+    * 强制覆盖冲突的软件包：
 
             　　pacman -Sw package_name
 
@@ -112,6 +117,11 @@
             　　pacman -Q --help
             　　pacman -Qi package_name     #显示查找的包信息
             　　pacman -Ql package_name     #显示查找的包的安装
+            　　pacman -Qo /path/to/file    #查找某个文件被那个包占用
+
+    * 可以使用 -F 标志搜索和查询本地包数据库。详情参见
+
+            　　pacman -Fy package_name
 
     * 可以使用-S 标志搜索和查询远程同步的包数据库。详情参见
 
@@ -127,6 +137,10 @@ Q: Whenever I try to install/uninstall a package pacman takes around 5~10 second
 for "fixing hard coded icons" post transaction hook.
 
 A: The package is hardcoder-fixer. Remove if you wish as it is non-critical.
+
+7. 查看package依赖
+
+        　　pactree -Scc
 
 ### ArchlinuxCN 镜像使用帮助
 
